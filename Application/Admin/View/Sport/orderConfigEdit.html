@@ -1,0 +1,64 @@
+<extend name="Public/base"/>
+
+<block name="body">
+  <!--<script src="jquery.js"></script>-->
+  <script src="__JS__/jquery.cxselect.min.js"></script>
+  <script type="text/javascript" src="__STATIC__/uploadify/jquery.uploadify.min.js"></script>
+
+    <div class="main-title">
+        <h2>编辑预订</h2>
+    </div>
+    <form action="{:U(Sport/hallAdd)}" method="post" class="form-horizontal">
+        <div class="form-item">
+            <input type='hidden' name='id' value='{$orderConfig.id}'>
+            <label class="item-label">预订最低时长<span class="check-tips"></span></label>
+            <div class="controls">
+                     <select name="minhour">
+                         <option value="0" <if condition="0 eq $orderConfig['minhour']">selected</if>>不限</option>
+                        <option value="0.5" <if condition="0.5 eq $orderConfig['minhour']">selected</if>>0.5</option>
+                        <option value="1" <if condition="1 eq $orderConfig['minhour']">selected</if>>1</option>
+                        <option value="1.5" <if condition="1.5 eq $orderConfig['minhour']">selected</if>>1.5</option>
+                    </select>小时
+            </div>
+        </div>
+          <div class="form-item">
+            <label class="item-label">预订最多时长<span class="check-tips"></span></label>
+            <div class="controls">
+                    <select name="maxhour">
+                        <option value="0" <if condition="0 eq $orderConfig['maxhour']">selected</if>>不限</option>
+                        <option value="2" <if condition="2 eq $orderConfig['maxhour']">selected</if>>2</option>
+                        <option value="4" <if condition="4 eq $orderConfig['maxhour']">selected</if>>4</option>
+                        <option value="6" <if condition="6 eq $orderConfig['maxhour']">selected</if>>6</option>
+                        <option value="8" <if condition="8 eq $orderConfig['maxhour']">selected</if>>8</option>
+                    </select>小时
+            </div>
+        </div>
+          <div class="form-item">
+            <label class="item-label">预订最多场地<span class="check-tips"></span></label>
+            <div class="controls">
+                     <select name="maxplace">
+                         <option value="0">不限</option>
+                        <option value="1" <if condition="1 eq $orderConfig['maxplace']">selected</if>>1</option>
+                        <option value="2" <if condition="2 eq $orderConfig['maxplace']">selected</if>>2</option>
+                        <option value="3" <if condition="3 eq $orderConfig['maxplace']">selected</if>>3</option>
+                        <option value="4" <if condition="4 eq $orderConfig['maxplace']">selected</if>>4</option>
+                        <option value="5" <if condition="5 eq $orderConfig['maxplace']">selected</if>>5</option>
+                        <option value="6" <if condition="6 eq $orderConfig['maxplace']">selected</if>>6</option>
+                        <option value="7" <if condition="7 eq $orderConfig['maxplace']">selected</if>>7</option>
+                        <option value="8" <if condition="8 eq $orderConfig['maxplace']">selected</if>>8</option>
+                    </select>个
+            </div>
+        </div>
+        <div class="form-item">
+            <button class="btn submit-btn ajax-post" id="submit" type="submit" target-form="form-horizontal">确 定</button>
+            <button class="btn btn-return" onclick="javascript:history.back(-1);return false;">返 回</button>
+        </div>
+    </form>
+</block>
+
+<block name="script">
+    <script type="text/javascript">
+        //导航高亮
+        highlight_subnav('{:U('User/index')}');
+    </script>
+</block>

@@ -1,0 +1,9 @@
+<extend name="Base/commonbg"/>
+
+<block name="body">
+    <div class="payfor-success">
+        <img src="__PUBLIC__/Mobile/img/success-icon.png">
+        <p class="txt">成功支付场地费 {$amount} 元</p>
+        <a class="green-btn" href="{:U('/Mobile/Order/detail?number='.$number.'&type='.$type)}">查看订单</a>
+    </div>
+</block>

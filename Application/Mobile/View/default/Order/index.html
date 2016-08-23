@@ -1,0 +1,197 @@
+<extend name="Base/commonbook"/>
+
+<block name="body">
+<div id="loading" data-lock="1" class="loading">
+    <div class="loading-icon"></div>
+</div>
+<div class="main hide" data-due="0">
+<!--头 begin-->
+    <p class="select-venue-title"><img class="min-icon" src="__PUBLIC__/Front/img/{$sportHall.tag}.png">{$sportHall.name}</p>
+<!--头 end-->
+<!--日期 begin-->
+<div class="book-date">
+    <div class="date-wrap">
+        <ul>
+            <volist name="datelist" id="vo">
+                <a><li><p>{$vo.week}</p><p>{$vo.date}</p></li></a>
+            </volist>
+        </ul>
+    </div>
+</div>
+<!--日期 end-->
+<!--图示 begin-->
+<div class="book-order">
+    <ul class="book-tip">
+        <li><i></i>不可订</li>
+        <li><i></i>可订</li>
+        <li><i></i>已选</li>
+    </ul>
+</div>
+<!--图示 end-->
+<div class="book-container">
+    <!--场馆号 begin-->
+    <div class="book-area">
+        <ul>
+            <volist name="placelist" id="vo">
+                <li>{$vo.name}</li>
+            </volist>
+        </ul>
+    </div>
+    <!--场馆号 end-->
+
+
+    <!--选择时间 begin-->
+    <div class="book-time">
+        <ul>
+            <volist name="times" id="vo">
+                <li><span>{$vo}</span><span></span><span></span></li>
+            </volist>
+        </ul>
+    </div>
+    <!--选择时间 end-->
+
+
+    <!--选择区 begin-->
+    <div id="wrapper">
+        <div id="scroller">
+            <div class="book-list">
+                <volist name="datalist" id="vo">
+                    <ul>
+                        <volist name="vo" id="voo">
+                        <li <if condition="$voo.status eq 0 or $voo.status eq 2  or $voo.status eq 3 or $voo.status eq 5 "> class="available"<else/> class="disable"</if> id="{$voo.id}_{$voo.time}">￥<em>{$voo.price}</em></li>
+                        </volist>
+                    </ul>
+                </volist>
+            </div>
+        </div>
+    </div>
+    <!--选择区 end-->
+
+
+</div>
+<!--确认 begin-->
+<div class="confirm-pay">
+    <span class="txt">场地费总计：<em>0元</em></span>
+    <a class="confirm" href="javascript:void(0)">确认场地</a>
+</div>
+<!--确认 end-->
+
+</div>
+
+<div class="toast hide">
+    <div class="toast-alert">
+        <div class="toast-msg"></div>
+    </div>
+</div>
+    <input type="hidden" name="spacetid" id="spacetid" value="{$spacetid}">
+    <input type="hidden" name="shid" id="shid" value="{$sportHall.id}">
+    <input type="hidden" name="oid" id="oid" value="{$oid}">
+
+    <script src="__PUBLIC__/Mobile/js/book.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            var dragging = false;
+            $(".book-date .date-wrap,.available").on("touchstart", function(){
+                dragging = false;
+            })
+            $(".book-date .date-wrap,.available").on("touchmove", function(){
+                dragging = true;
+            });
+            $(".book-date .date-wrap ul li").on("touchend", function(){
+                if (dragging) return;
+
+                $( this ).parent().siblings( 'a' ).find( 'li' ).removeClass( 'active' );
+                $( this ).toggleClass( 'active' );
+                var date     = $(this).children("p:nth-child(2)").html();
+                var spacetid = $("#spacetid").val();
+                var oid      = $("#oid").val();
+                var shid      = $("#shid").val();
+                var param    = {date:date,spacetid:spacetid,oid:oid,shid:shid};
+                $(".loading").addClass("hide");
+
+                $.ajax({
+                    url:'{:U("/Mobile/Order/getAreaStatusByAjax")}',
+                    type:'post',
+                    dataType:'json',
+                    data:param,
+                    success:function(data){
+                        var str = '';
+                        $.each(data,function(i,item){
+                            str += '<ul>';
+                            $.each(item,function(key,value){
+                                var id = value.id;
+                                var status = value.status;
+                                var time = value.time;
+                                var price = value.price;
+                                var style = '';
+                                if(status == 0 || status == 3 || status == 5){
+                                    style = ' class="available"';
+                                }else{
+                                    style = ' class="disable"';
+                                }
+                                var aid = ' id = "'+id+'_'+time+'"';
+                                str += '<li '+style+aid+'>￥<em>'+price+'</em></li>';
+                            })
+                            str += '</ul>';
+                        });
+
+                        $("#scroller .book-list").html('');
+                        $("#scroller .book-list").html(str);
+                        $(".main").removeClass("hide");//隐藏遮罩
+                    }
+                });
+            });
+
+            /*场次选择*/
+            $(document).bind( 'touchend', '.available',function() {
+                if (dragging) return;
+                $( this ).toggleClass( 'active' );
+
+                var price = 0;
+                $(".book-list .active").each(function(i,items){
+                    price += parseFloat($(items).find("em").html());
+                });
+                $(".confirm-pay .txt em").html(price+'元');
+            });
+
+            $(".confirm").live('touchstart',function(){
+                var ids = '';
+                $(".book-list .active").each(function(i,items){
+                    ids += '|'+$(items).attr("id");
+                });
+                if(ids == ''){
+                    alert('请先选择场地');
+                    return false;
+                }
+                ids          = ids.substring(1);
+                var date     = $(".book-date .active").children("p:nth-child(2)").html();
+                var spacetid = $("#spacetid").val();
+                var oid      = $("#oid").val();
+                var shid     = $("#shid").val();
+                var param    = {date:date,spacetid:spacetid,ids:ids,shid:shid,oid:oid};
+                $.ajax({
+                    url:'{:U("/Mobile/Order/preOrder")}',
+                    type:'post',
+                    datatype:'json',
+                    data:param,
+                    success:function(data){
+                        var result = eval("("+data+")");
+                        if(result.status == 0){
+                            window.location.href = '{:U("/Mobile/Order/confirm/type/order")}';
+                        }else if(result.status == 1){
+                            window.location.href = '{:U("/Mobile/Userinfo/login")}';
+                        }else if(result.status == 3){
+                            //window.location.href = '{:U("/Mobile/Order/index")}';
+                            alert(result.msg);
+                            window.location.reload();
+                        }else{
+                            alert(result.msg);
+                        }
+                    }
+                });
+            });
+        });
+
+    </script>
+
+</block>

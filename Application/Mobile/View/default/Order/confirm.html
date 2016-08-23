@@ -1,0 +1,193 @@
+<extend name="Base/commonbg"/>
+
+<block name="body">
+    <div class="order-confirm">
+        <!--头 begin-->
+        <if condition="$type eq 'order'">
+            <div class="top m_b2">
+                <p class="title">{$order.placeinfo}</p>
+                <div class="cont clearfix">
+                    <img class="min-icon" src="{$order.icon}">
+                    <div class="txt">
+                        <p class="time">{$order.weekinfo} {$order.datefinfo}<font class="m_l2">{$order.timeinfo}</font><em>({$order.hourinfo})</em></p>
+                        <p class="phone">手机号：{$userinfo.phone}</p>
+                        <p class="vip-num">会员号：{$userinfo.number}</p>
+                    </div>
+                </div>
+            </div>
+        </if>
+        <if condition="$type eq 'ticket'">
+            <volist name="order" id="vo">
+            <div class="top m_b2">
+                <p class="title">{$vo.title}({$vo.gttype}) x {$vo.count}<span style="float: right; color:red; font-size: 16px;">散票</span></p>
+                <div class="cont clearfix">
+                    <img class="min-icon" src="__PUBLIC__/Front/img/{$vo.tag}.png">
+                    <div class="txt">
+                        <p class="time">{$vo.datezone}<font class="m_l2">{$vo.timezone}</font><em>({$vo.price}{$vo.unit})</em></p>
+                        <p class="phone">手机号：{$userinfo.phone}</p>
+                        <p class="vip-num">会员号：{$userinfo.number}</p>
+                    </div>
+                </div>
+            </div>
+            </volist>
+        </if>
+        <!--头 end-->
+        <!--场地费总计 begin-->
+        <p class="total">场地费总计：<em>{$amount} 元</em></p>
+        <!--场地费总计 end-->
+        <!--支付方式 begin-->
+        <div class="payfor-type">
+            <p class="title">支付方式</p>
+            <ul>
+                <li>
+                    <a>
+                        <i class="ipass-icon"></i>
+                        <span>一卡通</span>
+                        <font>(余额{$userinfo.balance}元)</font>
+                        <i class="radio-btn on" id="vipcard"></i>
+                    </a>
+                </li>
+                <li>
+                    <a>
+                        <i class="wechart-icon"></i>
+                        <span>微信支付</span>
+                        <i class="radio-btn" id="wxpay"></i>
+                    </a>
+                </li>
+                <li>
+                    <a>
+                        <i class="bank-icon"></i>
+                        <span>银行卡支付</span>
+                        <i class="radio-btn" id="bankcard"></i>
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+        <!--支付方式 end-->
+        <div style="height: 150px;"></div>
+        <!--确认支付 begin-->
+        <div class="confirm-venue-money">
+            <p class="type">使用一卡通</p>
+            <p class="total">支付场地费：<em>{$amount} 元</em></p>
+            <a class="confirm green-btn" id="confirm">确认支付</a>
+        </div>
+        <!--确认支付 end-->
+
+    </div>
+
+    <!--输入密码弹层 begin-->
+    <section class="enter-psw hide">
+        <div class="overlay show">
+            <div class="ui-dialog zoomIn am">
+                <p class="head"><i class="close-dialog"></i>请输入一卡通密码</p>
+                <div class="content">
+                    <p class="name">江苏省五台山体育中心</p>
+                    <p class="price"><i class="ipass-icon"></i>- ¥{$amount}</p>
+                </div>
+                <div class="bottom">
+                    <p class="txt">请输入一卡通支付密码：</p>
+                    <div class="pwd-box">
+                        <input type="tel" maxlength="6" class="pwd-input" id="pwd-input">
+                        <div class="fake-box">
+                            <input type="password" readonly>
+                            <input type="password" readonly>
+                            <input type="password" readonly>
+                            <input type="password" readonly>
+                            <input type="password" readonly>
+                            <input type="password" readonly>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </section>
+    <!--输入密码弹层 end-->
+
+    <input type="hidden" name="oid" id="oid" value="{$oid}">
+    <input type="hidden" name="number" id="number" value="{$number}">
+    <input type="hidden" name="amount" id="amount" value="{$amount}">
+    <input type="hidden" name="type" id="type" value="{$type}">
+    <input type="hidden" name="paystatus" id="paystatus" value="0">
+
+    <input type="hidden" name="timeStamp" id="timeStamp" value="{$paypost.timeStamp}">
+    <input type="hidden" name="nonceStr" id="nonceStr" value="{$paypost.nonceStr}">
+    <input type="hidden" name="packages" id="packages" value="{$paypost.package}">
+    <input type="hidden" name="paySign" id="paySign" value="{$paypost.paySign}">
+
+    <script type="text/javascript" language="javascript" src="__PUBLIC__/Mobile/js/vendor/zepto.min.js"></script>
+    <script type="text/javascript" language="javascript" src="__PUBLIC__/Mobile/js/jweixin-1.0.0.js"></script>
+    <script type="text/javascript" language="javascript" src="__PUBLIC__/Mobile/js/pay.js"></script>
+
+    <script type="text/javascript">
+        $(function(){
+            wxpay();
+            /*确认支付*/
+            $( '#confirm' ).bind( 'touchstart' , function() {
+                if($("#paystatus").val() == 1){
+                    return false;
+                }else{
+                    $("#confirm").html("支付处理中...");
+                    $("#paystatus").val(1);
+                }
+
+                var paytype = $(".payfor-type").find('.on').attr('id');
+                if(paytype == 'vipcard'){
+                    $( '.enter-psw' ).show();
+                }else if(paytype  == 'wxpay'){
+                    jsApiCall();
+                }else if(paytype  == 'bankcard'){
+                    alert('暂未开通，请使用其他支付方式');
+                    $("#confirm").html("确认支付");
+                    $("#paystatus").val(0);
+                }
+            });
+
+            /*选择支付方式*/
+            $( '.payfor-type ul li' ).bind( 'touchend' , function() {
+                $( this ).find( '.radio-btn' ).addClass( 'on' );
+                $( this ).siblings().find( '.radio-btn' ).removeClass( 'on' );
+            });
+
+            //输入密码
+            var $input = $(".fake-box input");
+            $("#pwd-input").on("input", function() {
+                var pwd = $(this).val().trim();
+                for (var i = 0, len = pwd.length; i < len; i++) {
+                    $input.eq("" + i + "").val(pwd[i]);
+                }
+                $input.each(function() {
+                    var index = $(this).index();
+                    if (index >= len) {
+                        $(this).val("");
+                    }
+                });
+                if (len == 6) {
+                    var oid    = $("#oid").val();
+                    var number = $("#number").val();
+                    var type   = $("#type").val();
+                    var param  = {pwd:pwd,oid:oid,number:number,type:type};
+                    $.ajax({
+                        url:'{:U("/Mobile/Order/payOrderByAjax")}',
+                        type:'post',
+                        datatype:'json',
+                        data:param,
+                        success:function(data){
+                            var result = eval("("+data+")");
+                            $('.cd-popup').removeClass('is-visible');
+                            if(result.status == 200){
+                                window.location.href = '{:U("/Mobile/Order/success?amount=".$amount."&number=".$number."&type=".$type)}';
+                            }else{
+                                alert(result.msg);
+                                window.location.reload();
+                            }
+                        }
+                    });
+                }
+            });
+
+        });
+    </script>
+</block>

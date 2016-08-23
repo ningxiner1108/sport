@@ -1,0 +1,68 @@
+<extend name="Base/commonbg"/>
+
+<block name="body">
+    <div class="my-schedule">
+        <ul>
+            <volist name="orderlist" id="vo">
+                <li <if condition="$vo.ispay eq 0"> class="no-payfor"</if>>
+                    <p class="order-num">订单号：{$vo.number}<em><if condition="$vo.ispay eq 0">未支付<elseif condition="$vo.ispay eq 1"/>已支付<elseif condition="$vo.ispay eq 2"/>未支付（过期）<elseif condition="$vo.ispay eq 3"/>已退订<elseif condition="$vo.ispay eq 4"/>已结束<elseif condition="$vo.ispay eq 5"/>已改签</if></em></p>
+                    <a class="conn clearfix" href="{:U('/Mobile/Order/detail?id='.$vo['id'])}">
+                        <p class="bdg"><img src="__PUBLIC__/Front/img/{$vo.icon}.png"></p>
+                        <div class="txt">
+                            <p class="name line-clamp1">{$vo.path}</p>
+                            <p class="time">{$vo.weekinfo} {$vo.dateinfo}<font>{$vo.timeinfo}</font><em>({$vo.hourinfo})</em></p>
+                            <p class="phone-num">手机号：{$userinfo.phone}</p>
+                        </div>
+                        <i class="right-arrow pavm"></i>
+                    </a>
+                    <p class="cdf">场地费：<em>{$vo.amount}元</em>
+                        <if condition="$vo.ispay eq 0">
+                            <span class="operate"><a class="qx" title="cancelOrder">取消预订</a><a class="cz" href="{:U('/Mobile/Order/confirm?id='.$vo['id'])}">立即支付</a></span>
+                        <elseif condition="$vo.ispay eq 1"/>
+                            <span class="operate"><a class="gd" title="changeVenue">改订场地</a><a class="cz" title="cancelVenue">退订场地</a></span>
+                        </if>
+                        <span style="display: none;" class="orderid">{$vo.id}</span>
+                        <span style="display: none;" class="stid">{$vo.stid}</span>
+                        <span style="display: none;" class="backtime">1800</span>
+                        <span style="display: none;" class="orderdate">{$vo.yearinfo}-{$vo.dateinfo}</span>
+                    </p>
+                </li>
+            </volist>
+        </ul>
+
+    </div>
+
+    <input type="hidden" name="oid" id="oid">
+    <input type="hidden" name="cancelType" id="cancelType">
+    <input type="hidden" name="stid" id="stid">
+    <!--退订场地弹层 begin-->
+    <section class="cancel-venue hide" id="cancel_venue">
+        <div class="overlay show">
+            <div class="ui-dialog zoomIn am">
+                <p class="head"><i class="close-dialog"></i>退订场地</p>
+                <div class="content">
+                    <p class="name" id="name">全民健身中心：羽毛球馆2号场</p>
+                    <p class="time" id="time">周一&nbsp;&nbsp;5月27日&nbsp;&nbsp;21:00-23:00&nbsp;&nbsp;(2小时)</p>
+                </div>
+                <a class="green-btn" href="javascript:void(0)" id="confirmRefound">确认退订</a>
+            </div>
+        </div>
+    </section>
+    <!--退订场地弹层 end-->
+
+
+    <!--改订场地弹层 begin-->
+    <section class="cancel-venue hide" id="change_venue">
+        <div class="overlay show">
+            <div class="ui-dialog zoomIn am">
+                <p class="head"><i class="close-dialog"></i>改订场地</p>
+                <div class="content">
+                    <p class="name" id="change_name">全民健身中心：羽毛球馆2号场</p>
+                    <p class="time" id="change_time">周一&nbsp;&nbsp;5月27日&nbsp;&nbsp;21:00-23:00&nbsp;&nbsp;(2小时)</p>
+                </div>
+                <a class="green-btn" href="javascript:void(0)" id="confirmChange">确认改订</a>
+            </div>
+        </div>
+    </section>
+    <!--退订场地弹层 end-->
+</block>

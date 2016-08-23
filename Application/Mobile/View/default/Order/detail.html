@@ -1,0 +1,49 @@
+<extend name="Base/commonbg"/>
+
+<block name="body">
+    <div class="order-confirm">
+        <!--头 begin-->
+        <if condition="$type eq 'order'">
+        <div class="top m_b2">
+            <p class="title">{$order.placeinfo}</p>
+            <div class="cont clearfix">
+                <img class="min-icon" src="{$order.icon}">
+                <div class="txt">
+                    <p class="time">{$order.weekinfo} {$order.datefinfo}<font class="m_l2">{$order.timeinfo}</font><em>({$order.hourinfo})</em></p>
+                    <p class="phone">手机号：{$userinfo.phone}</p>
+                    <p class="vip-num">会员号：{$userinfo.number}</p>
+                </div>
+            </div>
+        </div>
+        </if>
+        <if condition="$type eq 'ticket'">
+            <volist name="order" id="vo">
+                <div class="top m_b2">
+                    <p class="title">{$vo.title}({$vo.gttype}) x {$vo.count}<span style="float: right; color:red; font-size: 16px;">散票</span></p>
+                    <div class="cont clearfix">
+                        <img class="min-icon" src="__PUBLIC__/Front/img/{$vo.tag}.png">
+                        <div class="txt">
+                            <p class="time">{$vo.datezone}<font class="m_l2">{$vo.timezone}</font><em>({$vo.price}{$vo.unit})</em></p>
+                            <p class="phone">手机号：{$userinfo.phone}</p>
+                            <p class="vip-num">会员号：{$userinfo.number}</p>
+                        </div>
+                    </div>
+                </div>
+            </volist>
+        </if>
+        <!--头 end-->
+        <!--订单信息 begin-->
+        <div class="order-info">
+            <p class="title-txt"><span>订单信息</span></p>
+            <p class="odtxt">订单号：{$number}</p>
+            <if condition="$ispay eq 1">
+            <p class="odtxt">二维码：</p>
+            <p class="qrcode"><img src="{$path}"></p>
+            <p class="tip">（入场时出示订单号、二维码或手机号均可）</p>
+            </if>
+        </div>
+        <!--订单信息 end-->
+        <a class="green-btn hollow" href="{:U('/Mobile/Order/orderList')}">关闭</a>
+
+    </div>
+</block>

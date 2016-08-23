@@ -1,0 +1,193 @@
+<extend name="Public/base"/>
+
+<block name="body">
+  <!--<script src="jquery.js"></script>-->
+  <script src="__JS__/jquery.cxselect.min.js"></script>
+  <script type="text/javascript" src="__STATIC__/uploadify/jquery.uploadify.min.js"></script>
+
+    <div class="main-title">
+        <h2>编辑价格</h2>
+    </div>
+    <form action="{:U(Sport/hallAdd)}" method="post" class="form-horizontal">
+         <div class="form-item">
+            <label class="item-label">价格标题 </label>
+            <div class="controls">
+            <label class="input-large">
+             <input type="text" name="title" class="text input-large" value="{$priceConfig.title}"  />
+            </label>				
+            </div>
+        <div class="form-item">
+            <label class="item-label">时间类型<span class="check-tips"></span></label>
+            <div class="controls">
+                 <select name="timetype" id="timetype">
+                     <option value="0" <if condition="0 eq $priceConfig['timetype']">selected</if>>不限</option>
+                    <option value="1" <if condition="1 eq $priceConfig['timetype']">selected</if>>指定星期</option>
+                    <option value="2" <if condition="2 eq $priceConfig['timetype']">selected</if>>日期范围</option>
+                    <option value="3" <if condition="3 eq $priceConfig['timetype']">selected</if> >具体日期</option>
+                </select>
+            </div>
+        </div>
+            <input type='hidden' value='{$priceConfig.id}'name='id'>
+      <div id="week">
+       <div class="form-item">
+            <label class="item-label">开始时间<span class="check-tips"></span></label>
+            <div class="controls">
+                <select name="date_s_1">
+                    <option value="1" <if condition="1 eq $priceConfig['date_s']">selected</if>>星期一</option>
+                    <option value="2" <if condition="2 eq $priceConfig['date_s']">selected</if>>星期二</option>
+                    <option value="3" <if condition="3 eq $priceConfig['date_s']">selected</if>>星期三</option>
+                    <option value="4" <if condition="4 eq $priceConfig['date_s']">selected</if>>星期四</option>
+                    <option value="5" <if condition="5 eq $priceConfig['date_s']">selected</if>>星期五</option>
+                    <option value="6" <if condition="6 eq $priceConfig['date_s']">selected</if>>星期六</option>
+                    <option value="7" <if condition="7 eq $priceConfig['date_s']">selected</if>>星期天</option>
+                 </select>
+            </div>
+        </div>
+        
+          <div class="form-item">
+            <label class="item-label">结束时间<span class="check-tips"></span></label>
+            <div class="controls">
+                <select name="date_e_1">
+                    <option value="1" <if condition="1 eq $priceConfig['date_e']">selected</if>>星期一</option>
+                    <option value="2" <if condition="2 eq $priceConfig['date_e']">selected</if>>星期二</option>
+                    <option value="3" <if condition="3 eq $priceConfig['date_e']">selected</if>>星期三</option>
+                    <option value="4" <if condition="4 eq $priceConfig['date_e']">selected</if>>星期四</option>
+                    <option value="5" <if condition="5 eq $priceConfig['date_e']">selected</if>>星期五</option>
+                    <option value="6"<if condition="6 eq $priceConfig['date_e']">selected</if> >星期六</option>
+                    <option value="7" <if condition="7 eq $priceConfig['date_e']">selected</if>>星期天</option>
+                 </select>
+            </div>
+        </div>
+    </div>
+
+    <div id="date">
+       <div class="form-item">
+            <label class="item-label">开始时间<span class="check-tips"></span></label>
+            <div class="controls">
+                <select name="date_s_2">
+                    <volist name="data" id="vo">
+                       <option value="{$vo}"  <if condition="$vo eq $priceConfig['date_s']">selected</if>>{$vo}号</option>
+                    </volist>
+                 </select>
+            </div>
+        </div>
+        
+       <div class="form-item">
+            <label class="item-label">结束时间<span class="check-tips"></span></label>
+            <div class="controls">
+                <select name="date_e_2">
+                    <volist name="data" id="vo">
+                       <option value="{$vo}"<if condition="$vo eq $priceConfig['date_e']">selected</if> >{$vo}号</option>
+                    </volist>
+                 </select>
+            </div>
+        </div>
+    </div>
+
+
+<div  id="date_define">
+    <div class="form-item">
+            <label class="item-label">开始时间</label>
+            <div class="controls">
+               <input type="text" name="date_s_3" class="text input-large time" value="{$date_s}" placeholder="请选择时间" />
+            </div>
+    </div>
+
+    <div class="form-item">
+            <label class="item-label">结束时间</label>
+            <div class="controls">
+               <input type="text" name="date_e_3" class="text input-large time" value="{$date_e}" placeholder="请选择时间" />
+            </div>
+    </div>
+</div>
+  <script src="__JS__/timeTypeInit.js"></script>
+        <div class="form-item" id="timeset">
+            <label class="item-label">时间段价格设置<span class="check-tips"></span></label>
+            <div class="controls">
+                <select name="timezone_s_1">
+                   <volist name="showtime" id="vo">
+                       <option value="{$vo.key}" <if condition="$vo.key eq $detail1['timezone_s']">selected</if>>{$vo.value}</option>
+                    </volist>
+            </select>—
+            <select name="timezone_e_1">
+                     <volist name="showtime" id="vo">
+                       <option value="{$vo.key}" <if condition="$vo.key eq $detail1['timezone_e']">selected</if> >{$vo.value}</option>
+                    </volist>
+            </select>
+                 <input type="text" class="text input-small" name="price1" value="{$detail1['price']}" placeholder="请输入价格">元
+            </div>
+              <div class="controls">
+                <select name="timezone_s_2">
+                   <volist name="showtime" id="vo">
+                       <option value="{$vo.key}" <if condition="$vo.key eq $detail2['timezone_s']">selected</if> >{$vo.value}</option>
+                    </volist>
+            </select>—
+            <select name="timezone_e_2">
+                     <volist name="showtime" id="vo">
+                       <option value="{$vo.key}" <if condition="$vo.key eq $detail2['timezone_e']">selected</if>>{$vo.value}</option>
+                    </volist>
+            </select>
+                 <input type="text" class="text input-small" name="price2" value="{$detail2.price}" placeholder="请输入价格">元
+            </div>
+        </div>
+        
+         <div class="form-item">
+            <label class="item-label">备注 </label>
+            <div class="controls">
+            <label class="textarea input-large">
+                    <textarea name="mark">{$priceConfig.mark}</textarea>
+            </label>				
+            </div>
+		</div>
+        <div class="form-item">
+            <button class="btn submit-btn ajax-post" id="submit" type="submit" target-form="form-horizontal">确 定</button>
+            <button class="btn btn-return" onclick="javascript:history.back(-1);return false;">返 回</button>
+        </div>
+    </form>
+</block>
+
+<block name="script">
+<link href="__STATIC__/datetimepicker/css/datetimepicker.css" rel="stylesheet" type="text/css">
+<php>if(C('COLOR_STYLE')=='blue_color') echo '<link href="__STATIC__/datetimepicker/css/datetimepicker_blue.css" rel="stylesheet" type="text/css">';</php>
+<link href="__STATIC__/datetimepicker/css/dropdown.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="__STATIC__/datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+<script type="text/javascript" src="__STATIC__/datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>
+<script type="text/javascript">
+  //导航高亮
+   highlight_subnav('{:U('User/index')}');
+$(function(){
+    $('.time').datetimepicker({
+        format: 'yyyy-mm-dd',
+        language:"zh-CN",
+        minView:2,
+        autoclose:true
+    });
+    showTab();
+
+});
+ $('#timetype').bind('change', function(){ 
+    var val = $(this).val(); 
+    console.log(val);
+    switch(val){ 
+      case '0': $("#week").hide();$('#date').hide();$("#date_define").hide(); break; 
+      case '1': $('#week').show(); $('#date').hide();$("#date_define").hide(); break; 
+      case '2': $('#date').show(); $('#week').hide();$("#date_define").hide(); break;
+      case '3': $("#date_define").show();$('#date').hide(); $('#week').hide(); break;  
+      } 
+    });
+    
+   $('#timezone_e').bind('change', function(){ 
+    var val = $(this).val(); 
+    console.log(val);
+    switch(val){ 
+      case '0': $("#week").hide();$('#date').hide();$("#date_define").hide(); break; 
+      case '1': $('#week').show(); $('#date').hide();$("#date_define").hide(); break; 
+      case '2': $('#date').show(); $('#week').hide();$("#date_define").hide(); break;
+      case '3': $("#date_define").show();$('#date').hide(); $('#week').hide(); break;  
+      } 
+    });  
+    
+    
+</script>
+</block>
+

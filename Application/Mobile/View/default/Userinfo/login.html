@@ -1,0 +1,16 @@
+<extend name="Base/commonbg"/>
+
+<block name="body">
+    <form name="form1" id="form1" action="{:U('/Mobile/Userinfo/login')}" method="post">
+    <div class="register login">
+        <p class="txt">微信昵称：{$nickname}</p>
+        <p class="phone-num clearfix"><span>手机号/会员卡：</span><input type="tel" name="phone" id="phone" class="input"></p>
+        <div class="inputarea clearfix">
+            <input type="tel" name="code" id="code" class="msg input" placeholder="短信验证码">
+            <input type="text" class="sentcode" onclick="settime(60,'login')" readonly value="发送验证码">
+        </div>
+        <p class="fast-entry">没有账号？<a href="{:U('/Mobile/Userinfo/register')}">点此注册</a></p>
+    </div>
+    <a class="green-btn" id="loginbutton">登录</a>
+    </form>
+</block>

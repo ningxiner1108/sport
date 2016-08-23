@@ -1,0 +1,17 @@
+<extend name="Base/common"/>
+
+<block name="body">
+    <section class="venue-list list">
+        <ul>
+            <volist name="datalist" id="vo">
+            <li>
+                <a class="clearfix" href="{:U('/Mobile/Order/index?gid='.$gid.'&id='.$vo['id'])}">
+                    <img src="__PUBLIC__/Front/img/{$vo.tag}b.png">
+                    <div class="txt name line-clamp1">{$vo.name}</div>
+                    <i class="right-arrow pavm"></i>
+                </a>
+            </li>
+            </volist>
+        </ul>
+    </section>
+</block>

@@ -1,0 +1,14 @@
+<extend name="Base/commonbg"/>
+
+<block name="body">
+    <div class="payfor-success register-success">
+        <img src="__PUBLIC__/Mobile/img/success-icon.png">
+        <p class="txt">注册成功</p>
+        <div class="content">
+            <p>微信昵称：<em>{$nickname}</em></p>
+            <p>会员号：<em>{$number}</em></p>
+            <p>手机号：<em>{$phone}</em></p>
+        </div>
+        <a class="green-btn" href="{:U('/Mobile/Userinfo/index')}">完成</a>
+    </div>
+</block>

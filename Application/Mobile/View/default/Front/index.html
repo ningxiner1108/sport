@@ -1,0 +1,741 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>预定场地</title>
+
+    <link href="__PUBLIC__/Front/css/ui-base.css" type="text/css" rel="stylesheet">
+    <link href="__PUBLIC__/Front/css/common.css" type="text/css" rel="stylesheet">
+
+    <script src="__PUBLIC__/Front/js/vendor/zepto.min.js"></script>
+    <script src="__PUBLIC__/Front/js/vendor/mobileResponsive.js"></script>
+    <script src="__PUBLIC__/Front/js/vendor/touchScroll.js"></script>
+
+    <script>
+        function book(num){
+            $(".book").removeClass("selected");
+            $("#book"+num).addClass("selected");
+            for(var id = 1;id<=2;id++)
+            {
+                var book="book_con"+id;
+                if(id==num){
+                    document.getElementById(book).style.display="block";
+                }
+                else{
+                    document.getElementById(book).style.display="none";
+                }
+            }
+        }
+
+        //弹出隐藏层
+        function ppp(show_div){
+            document.getElementById(show_div).style.display='block';
+            document.getElementById("fade").style.display='block' ;
+            var bgdiv = document.getElementById("fade");
+            bgdiv.style.width = document.body.scrollWidth;
+// bgdiv.style.height = $(document).height();
+            $("#fade").height($(document).height());
+        };
+        //关闭弹出层
+        function CloseDiv(show_div)
+        {
+            document.getElementById(show_div).style.display='none';
+            document.getElementById("fade").style.display='none';
+        };
+    </script>
+</head>
+<body>
+
+<!-- 预定 begin -->
+<div class="book-area">
+<!-- 公用头部 begin -->
+<div class="comm-header clearfix">
+    <img class="logo" src="__PUBLIC__/Front/img/login-logo.png" />
+    <span class="txt">随e动&nbsp;&nbsp;核销</span>
+    <span class="txt">&nbsp;场馆选择：</span>
+    <select name="shid_select" id="shid_select">
+        <volist name="sportHallList" id="vo">
+            <option value="{$vo.id}" <if condition="$vo.id eq $shid"> selected</if>>{$vo.name}</option>
+        </volist>
+    </select>
+    <span class="time">{:date('Y-m-d H:i')}</span>
+    <span class="name"><i class="user-avatar-img"></i>{:session('user_auth.username')}</span>
+</div>
+<!-- 公用头部 end -->
+<!-- 内容 begin -->
+<div class="select-content clearfix">
+    <ul id="navul">
+        <a href="#" onclick="javascript:book(1)"><li id="book1" class="book selected">场地预订</li></a>
+        <a href="#" onclick="javascript:book(2)"><li id="book2" class="book">散票购买</li></a>
+    </ul>
+    <div class="clearfix"></div>
+    <div id="book_con1" style="display:block">
+        <!-- 左侧 begin -->
+        <div class="left">
+    <!-- 时间 begin -->
+    <div class="select-time">
+        <p class="title"><img src="__PUBLIC__/Front/img/{$sportHall.tag}p.png"><span class="txt">{$sportHall.name}</span></p>
+        <div class="select-time-nav">
+            <span class="arrow-left"><i></i></span>
+            <ul class="clearfix">
+                <volist name="datelist" id="vo">
+                    <li <if condition="$vo.week eq '今天'"> class="on"</if>>
+                        <span>{$vo.week}</span>
+                        <em>{$vo.date}</em>
+                    </li>
+                </volist>
+            </ul>
+            <span class="arrow-right" numflag="0"><i></i></span>
+        </div>
+    </div>
+    <!-- 时间 end -->
+    <!-- 图例 begin -->
+    <div class="legend">
+        <span><em class="expire m_l0"></em>已过期</span>
+        <span><em class="admission"></em>已入场</span>
+        <span><em class="ordered"></em>已预订</span>
+        <span><em class="unorder"></em>未预定</span>
+        <span><em class="selected"></em>已选择</span>
+    </div>
+    <!-- 图例 end -->
+    <!--选择场地 begin-->
+    <div class="select-venue clearfix">
+    <!--场次 begin-->
+    <div class="venue-num book-num">
+        <ul class="clearfix">
+            <volist name="placelist" id="vo">
+                <li>{$vo.name}</li>
+            </volist>
+        </ul>
+    </div>
+    <!--场次 end-->
+    <!--时间段 begin-->
+    <div class="time-range book-time">
+        <ul>
+            <volist name="times" id="vo">
+                <em>{$vo}</em><i class="line"></i>
+            </volist>
+        </ul>
+    </div>
+    <!--时间段 end-->
+    <!--选择区域 end-->
+    <div id="wrapper" class="sv-outer">
+    <div id="scroller">
+    <!--选择区 begin-->
+    <div class="select-venue-area clearfix book-list">
+        <volist name="datalist" id="vo">
+            <dl>
+                <volist name="vo" id="voo">
+                    <if condition="$voo.status eq 0">
+                        <dd class="vv_sel" id="{$voo.id}_{$voo.time}">{$voo.price}</dd>
+                    <elseif  condition="$voo.status eq 1"/>
+                        <dd class="not" id="{$voo.id}_{$voo.time}">{$voo.price}</dd>
+                    <elseif  condition="$voo.status eq 4"/>
+                        <dd class="admission" id="{$voo.id}_{$voo.time}">{$voo.price}</dd>
+                    <elseif  condition="$voo.status eq 6"/>
+                        <dd class="expire" id="{$voo.id}_{$voo.time}">未入过期</dd>
+                    <else/>
+                        <dd class="vv_sel" id="{$voo.id}_{$voo.time}">{$voo.price}</dd>
+                    </if>
+                </volist>
+            </dl>
+        </volist>
+    </div>
+    <!--选择区 end-->
+    </div>
+    </div>
+    <!--选择区域 end-->
+
+    </div>
+    <!--选择场地 end-->
+
+    </div>
+        <!-- 左侧 end -->
+    </div>
+    <div id="book_con2" style="display:none">
+        <!-- 左侧 begin -->
+        <div class="left">
+            <div class="woaicss">
+                <script language="javascript">
+                    function woaicssq(num){
+
+                        $("#woaicss_con1").find("li").each(function(){
+                            if($(this).attr("index")==num|| num==0){
+                                $(this).show();
+                            }else{
+                                $(this).hide();
+                            }
+
+                        });
+
+                        $("#woaicsstitle").find("li").each(function(){
+                            if($(this).attr("index")==num){
+                                $(this).addClass("plbox");
+                            }else{
+                                $(this).removeClass("plbox");
+                            }
+                        });
+                    }
+
+                </script>
+                <ul class="woaicss_title" id="woaicsstitle">
+                    <a href="javascript:void(0)" onclick="woaicssq(0)"><li class="allpiao">所有散票</li></a>
+                    <volist name="sportHallList" id="vo">
+                        <a href="javascript:void(0)" onclick="woaicssq({$vo.id})">
+                            <li index="{$vo.id}" class="pinlei {$vo.tag}" >{$vo.name}</li>
+                        </a>
+                    </volist>
+                </ul>
+                <div class="woaicss_con" id="woaicss_con1" style="display:block;">
+                    <ul>
+                        <volist name="sportHallList" id="vo">
+                            <volist name="vo['guestticket']" id="voo">
+                                <li index="{$vo.id}" tag="{$vo.tag}" id="li_{$voo.id}">
+                                    <div class="con_fudong" index="{$vo.id}">
+                                        <img src="__PUBLIC__/Front/img/{$voo.tag}bg.png" />
+                                        <div class="img_fd"><img src="__PUBLIC__/Front/img/{$voo.tag}p.png" /><p>{$vo.name}({$voo.gttype})</p></div>
+                                        <div class="p_fd"><p>{$voo.timezone}<br />{$voo.datezone}</p></div>
+                                        <div class="p_fd_bt"><p>{$voo.price}</p><p>{$voo.unit}</p></div>
+                                        <span style="display: none;">{$voo.note}</span>
+                                    </div>
+                                    <div style="clear:both" class = "piao_botton">
+                                        <div  style="float:left" class="addcart"><img src="__PUBLIC__/Front/img/b_add.png" /></div>
+                                    </div>
+                                </li>
+                            </volist>
+                        </volist>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- 左侧 end -->
+    </div>
+
+    <!-- 右侧 begin -->
+    <div class="right">
+        <!-- 查询 begin -->
+        <div class="vip-search m_b4">
+            <div class="search-outter">
+                <input type="text" class="input" placeholder="请输入手机号" id="autocomplete"/><button class="search-btn">查询</button>
+            </div>
+        </div>
+        <!-- 查询 end -->
+
+        <!-- 基本信息 begin -->
+        <div class="vip-info-cont clearfix">
+            <div class="name-phone">
+                <p>姓名：<span class="m_l3" id="user_name">--</span></p>
+                <p>手机号：<span id="user_phone">--</span></p>
+            </div>
+            <div class="card-indo">
+                <p class="vip-num">会员号：<span class="p_l3" id="user_number">--</span></p>
+                <p class="vip-num">卡内余额：<span class="color_orange" id="user_balance">--元</span></p>
+            </div>
+        </div>
+        <!-- 基本信息 end -->
+
+        <div id="order_list">
+
+        </div>
+
+        <div id="ticket_list">
+
+        </div>
+
+
+        <div class="selected-site">
+            <p id="select_title" class="txt">已选散票 (0)</p>
+            <!-- one begin -->
+            <ul id="selected">
+
+            </ul>
+            <!-- one end -->
+
+        </div>
+
+
+
+        <div style="position: fixed; width: 445px; bottom: 20px; right: 48px;">
+            <p class="money-amount m_t8">费用合计：<em id="order_amount">0</em>元</p>
+            <a class="settle" id="confirmOrder">确认预订</a>
+        </div>
+
+
+    </div>
+    <!-- 右侧 end -->
+
+</div>
+<!-- 内容 end -->
+
+</div>
+<!-- 预定 end -->
+
+<!-- 使用须知弹出层 begin -->
+<div id="fade" class="black_overlay"></div>
+<div id="MyDiv" class="konw-off white_content">
+    <div class="ui-dialog zoomIn am" style="width:600px;">
+        <!-- 头 begin -->
+        <div class="title">购票须知 <span id="item">游泳票</span>
+            <i class="close-dialog" onclick="CloseDiv('MyDiv')"></i>
+        </div>
+        <!-- 头 end -->
+        <!-- 内容 begin -->
+        <div class="content clearfix" style=" height:450px;">
+
+            <div class="right-info">
+                <div class="bs-info">
+                    <div class="info_tit"><b><img id="img_notice" src="" style="padding-top: 5px;"/><p>购票须知</p></b></div>
+                    <div class="clearfix" ></div>
+                    <p style="margin-top:10px;" id="notice"></p>
+                </div>
+                <a class="settle" style="margin-top: 290px; width:100px; margin-left:230px;"  onclick="CloseDiv('MyDiv')">关闭</a>
+            </div>
+
+        </div>
+        <!-- 内容 end -->
+    </div>
+</div>
+<!-- 使用须知弹出层 end -->
+
+<!-- 购票成功弹出层 begin -->
+<div  id="MyDiv1" class="success-off white_content">
+    <div class="ui-dialog zoomIn am" style="width:550px;">
+        <!-- 头 begin -->
+        <div class="title">散票购买-预订成功<i class="close-dialog"></i>
+            <span style="font-size: 16px;float: right; cursor: pointer;" onclick="CloseDiv('MyDiv1')">×</span>
+        </div>
+        <!-- 头 end -->
+        <!-- 内容 begin -->
+        <div class="content clearfix" style=" height:550px;">
+
+            <div class="right-info">
+                <div class="bs-info">
+                    <p class="succ_succ">购买成功!</p>
+                    <div class="clearfix" ></div>
+                    <div class="basic-book-info" style=" width:500px;">
+                        <p style="padding-top:13px; padding-left:30px;"><span>姓名：</span><font>朱晓琴</font></p>
+                        <p style="padding-top:13px;"><span>会员卡：</span><font>28023331100564</font></p>
+                        <p style=" padding-left:30px;"><span>手机号：</span><font>18013384668</font></p>
+                        <p class="price"><span>卡内余额：<font style=" color:#fd835c;">480 元</font></span></p>
+                    </div>
+                    <!-- 已选场地 begin -->
+                    <div class="selected-site" style="margin-top:20px;">
+                        <p id="select_title1" class="txt">已选项目 (7)</p>
+                        <div class="clearfix" ></div>
+                        <!-- one begin -->
+                        <ul id="selected1" style="height:208px; overflow:auto;">
+                            <li><img src="__PUBLIC__/Front/img/baolin.png"><p> <b>保龄球(学生票) x2</b> <span>30元/人/次</span> <em>￥60</em></p></li>
+                            <li><img src="__PUBLIC__/Front/img/baolin.png"><p> <b>保龄球(普通票) x2</b> <span>40元/人/次</span> <em>￥80</em></p></li>
+                            <li><img src="__PUBLIC__/Front/img/lanqiu.png"><p> <b>篮球(学生票) x2</b> <span>20元/人/次</span> <em>￥40</em></p></li>
+                            <li><img src="__PUBLIC__/Front/img/youyong.png"><p> <b>游泳(学生票) x2</b> <span>30元/人/次</span> <em>￥60</em></p></li>
+                            <li><img src="__PUBLIC__/Front/img/lanqiu.png"><p> <b>篮球(普通票) x2</b> <span>30元/人/次</span> <em>￥60</em></p></li>
+                            <li><img src="__PUBLIC__/Front/img/zuqiu.png"><p> <b>足球(学生票) x2</b> <span>15元</span> <em>￥30</em></p></li>
+                            <li><img src="__PUBLIC__/Front/img/pingpang.png"><p> <b>乒乓球(学生票) x2</b> <span>30元/人/次</span> <em>￥60</em></p></li>
+                        </ul>
+                        <!-- one end -->
+
+                    </div>
+                    <!-- 已选场地 end -->
+                    <p class="changdi">场地费合计：<em>0元</em></p>
+                    <a class="settle" style=" width:100px; margin-left:200px;" onclick="CloseDiv('MyDiv1')">关闭</a>
+
+
+                </div>
+
+            </div>
+            <!-- 内容 end -->
+        </div>
+    </div>
+</div>
+<!-- 购票成功弹出层 end -->
+
+<!-- 退订/改定 begin -->
+<div id="cancelOrder" class="change-order overlay">
+    <div class="ui-dialog zoomIn am">
+        <!-- 头 begin -->
+        <div class="title">退订<i class="close-dialog"></i></div>
+        <!-- 头 end -->
+        <!-- 内容 begin -->
+        <div class="content clearfix">
+            <!-- 基本信息 begin -->
+            <p class="title-txt m_t6">会员信息</p>
+            <div class="vip-info-cont p_r clearfix">
+                <div class="name-phone">
+                    <p>姓名：<span class="m_l3" id="cancel_username">--</span></p>
+                    <p>手机号：<span id="cancel_phone">--</span></p>
+                </div>
+                <div class="card-indo">
+                    <p class="vip-num">会员号：<span class="p_l3" id="cancel_number">--</span></p>
+                    <p class="vip-num">卡内余额：<span class="color_orange" id="cancel_balance">0</span></p>
+                </div>
+                <span class="deduct-tip">（本次预定已扣<em class="color_orange" id="cancel_amount">0</em>）</span>
+            </div>
+            <!-- 基本信息 end -->
+
+            <!--一条订单 begin-->
+            <div class="order-list" id="cancel_order">
+            </div>
+            <!--一条订单 end-->
+            <p class="money-amount">场地费合计：<em id="cancel_allamount">--</em>元</p>
+
+        </div>
+        <!-- 内容 end -->
+        <!-- 底 begin -->
+        <div class="footer"><a class="opt-order" id="cancelOrderButton">退订</a></div>
+        <input type="hidden" id="cancel_order_id">
+        <!-- 底 end -->
+    </div>
+</div>
+
+<div id="changeOrder" class="change-order overlay">
+    <div class="ui-dialog zoomIn am">
+        <!-- 头 begin -->
+        <div class="title">改订<i class="close-dialog"></i></div>
+        <!-- 头 end -->
+        <!-- 内容 begin -->
+        <div class="content clearfix">
+            <!-- 基本信息 begin -->
+            <p class="title-txt m_t6">会员信息</p>
+            <div class="vip-info-cont p_r clearfix">
+                <div class="name-phone">
+                    <p>姓名：<span class="m_l3" id="change_username">--</span></p>
+                    <p>手机号：<span id="change_phone">--</span></p>
+                </div>
+                <div class="card-indo">
+                    <p class="vip-num">会员号：<span class="p_l3" id="change_number">--</span></p>
+                    <p class="vip-num">卡内余额：<span class="color_orange" id="change_balance">0</span></p>
+                </div>
+                <span class="deduct-tip">（本次预定已扣<em class="color_orange" id="change_amount">0</em>）</span>
+            </div>
+            <!-- 基本信息 end -->
+
+            <!--一条订单 begin-->
+            <div class="order-list" id="change_order">
+            </div>
+            <!--一条订单 end-->
+            <p class="money-amount">场地费合计：<em id="change_allamount">--</em>元</p>
+
+        </div>
+        <!-- 内容 end -->
+        <!-- 底 begin -->
+        <div class="footer"><a class="opt-order" id="changeOrderButton">去改订</a></div>
+        <input type="hidden" id="change_order_id">
+        <!-- 底 end -->
+    </div>
+</div>
+<!-- 退订/改定 end -->
+
+
+<!-- 预定成功弹出层 begin -->
+<div id="orderSuccess" class="order-success overlay">
+    <div class="ui-dialog zoomIn am">
+        <!-- 头 begin -->
+        <div class="title">现场预订—预订成功<i class="close-dialog" id="orderSuccess_close"></i></div>
+        <!-- 头 end -->
+        <!-- 内容 begin -->
+        <div class="content">
+            <p class="sucess-txt">预订成功！</p>
+
+            <!-- 基本信息 begin -->
+            <div class="vip-info-cont p_r clearfix">
+                <div class="name-phone">
+                    <p>姓名：<span class="m_l3" id="confirm_username">--</span></p>
+                    <p>手机号：<span id="confirm_phone">--</span></p>
+                </div>
+                <div class="card-indo">
+                    <p class="vip-num">会员号：<span class="p_l3" id="confirm_number">--</span></p>
+                    <p class="vip-num">卡内余额：<span class="color_orange" id="confirm_balance">--</span></p>
+                </div>
+                <span class="deduct-tip">（本次预定已扣<em class="color_orange" id="confirm_amount">--</em>元）</span>
+            </div>
+            <!-- 基本信息 end -->
+
+            <!--一条订单 begin-->
+            <div class="order-list">
+                <p class="order-num">场地预定订单号：<span id="confirm_order_number">--</span></p>
+                <!--one begin-->
+                <div class="confirm_order_list" id="confirm_order_list">
+
+                </div>
+                <!--one end-->
+            </div>
+            <div class="order-list">
+                <p class="order-num">散票预定订单号：<span id="confirm_ticket_order_number">--</span></p>
+                <!--one begin-->
+                <div class="confirm_order_list" id="confirm_ticket_order_list">
+
+                </div>
+                <!--one end-->
+            </div>
+            <!--一条订单 end-->
+            <p class="money-amount">场地费合计：<em id="order_allamount">0</em>元</p>
+
+        </div>
+        <!-- 内容 end -->
+        <!-- 底 begin -->
+        <div class="footer"><a class="operate" id="orderSuccess_closebtn">关闭</a></div>
+        <!-- 底 end -->
+    </div>
+</div>
+<!-- 预定成功弹出层 end -->
+
+
+
+<input type="hidden" name="spacetid" id="spacetid" value="{$spacetid}">
+<input type="hidden" name="shid" id="shid" value="{$sportHall.id}">
+<input type="hidden" name="oid" id="oid" value="{$oid}">
+<input type="hidden" name="uid" id="uid">
+<input type="hidden" name="stid" id="stid" value="1">
+
+
+
+<script type="text/javascript" src="__PUBLIC__/Front/js/vendor/jquery-1.9.0.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Front/js/book.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Front/js/autocomplete/jquery.autocomplete.js"></script>
+<script type="text/javascript">
+    $(function(){
+        $('#autocomplete').autocomplete({
+            serviceUrl: '{:U("/Mobile/Front/queryUserinfo")}',
+            onSelect: function (suggestion) {
+                var uid  = suggestion.data;
+                var stid = $("#stid").val();
+                $("#uid").val(suggestion.data);
+                $.ajax({
+                    url:'{:U("/Mobile/Front/queryUserAndOrder")}',
+                    type:'post',
+                    datatype:'json',
+                    data:{uid:uid,stid:stid},
+                    success:function(data){
+                        var result = eval("("+data+")");
+                        if(result.status == 200){
+                            $("#user_name").html(result.data.userinfo.nickname);
+                            $("#user_phone").html(result.data.userinfo.phone);
+                            $("#user_number").html(result.data.userinfo.number);
+                            $("#user_balance").html(result.data.userinfo.balance+'元');
+
+                            var list = "";
+                            //场地预定展示 start
+                            var placelist = result.data.placelist;
+                            $(placelist).each(function(index,item){
+                                var tmp = $("#order_list_tmp").html();
+                                tmp = tmp.replace(/{order_id}/g,item.id);
+                                tmp = tmp.replace(/{order_number}/g,item.number);
+                                tmp = tmp.replace('{order_icon}',item.icon);
+                                tmp = tmp.replace('{order_name}',item.path);
+                                tmp = tmp.replace('{order_week}',item.weekinfo);
+                                tmp = tmp.replace('{order_date}',item.dateinfo);
+                                tmp = tmp.replace('{order_time}',item.timeinfo);
+                                tmp = tmp.replace('{order_hour}',item.hourinfo);
+                                tmp = tmp.replace(/{order_amount}/g,item.amount);
+                                list += tmp;
+                            });
+                            $("#order_list").html(list);
+                            //场地预定展示 end
+
+                            //散票预定展示 start
+                            list = "";
+                            var ticketlist = result.data.ticketlist;
+                            $(ticketlist).each(function(index,item){
+                                var tmp = $("#ticket_list_tmp").html();
+                                tmp = tmp.replace(/{number}/g,item.number);
+                                tmp = tmp.replace('{tag}','__PUBLIC__/Front/img/' + item.tag + '.png');
+                                tmp = tmp.replace('{title}',item.title);
+                                tmp = tmp.replace('{gttype}',item.gttype);
+                                tmp = tmp.replace('{datezone}',item.datezone);
+                                tmp = tmp.replace('{timezone}',item.timezone);
+                                tmp = tmp.replace('{price}',item.price);
+                                tmp = tmp.replace('{unit}',item.unit);
+                                tmp = tmp.replace('{count}',item.count);
+                                tmp = tmp.replace('{amount}',item.count * item.price);
+                                list += tmp;
+                            });
+                            $("#ticket_list").html(list);
+                            //场地预定展示 end
+                        }else{
+                            alert(result.msg);
+                        }
+                    }
+                });
+            }
+        });
+
+        //计算窗口高度
+        var h_ = document.body.scrollHeight;
+        $( '.select-content' ).css( 'height' , parseInt(h_) - 47 );
+
+        var dragging = false;
+        $(".book-date .date-wrap,.available").on("touchstart", function(){
+            dragging = false;
+        })
+        $(".book-date .date-wrap,.available").on("touchmove", function(){
+            dragging = true;
+        });
+        $(".book-date .date-wrap ul li").on("touchend", function(){
+            if (dragging) return;
+
+            $( this ).toggleClass( 'active' );
+            $( this ).parent().siblings( 'a' ).find( 'li' ).removeClass( 'active' );
+        });
+
+        /*场次选择*/
+        $(document).on('click','.select-venue dl dd.vv_sel',function(){
+            $( this ).toggleClass( 'cur' );
+            var amount = parseFloat($(this).html());
+
+            if($(this).attr('class') == 'vv_sel'){
+                var order_amount = parseFloat($("#order_amount").html()) - amount;
+                $("#order_amount").html(order_amount);
+            }else{
+                var order_amount = parseFloat($("#order_amount").html()) + amount;
+                $("#order_amount").html(order_amount);
+            }
+        });
+
+        /*选择日期*/
+        $( '.select-time ul li' ).bind( 'click' , function(){
+            $( this ).addClass( 'on' ).siblings().removeClass( 'on' );
+            var date = $(this).find('em').html();
+            var spacetid = $("#spacetid").val();
+            var oid      = $("#oid").val();
+            var shid      = $("#shid").val();
+            var param    = {date:date,spacetid:spacetid,oid:oid,shid:shid};
+            $(".loading").addClass("hide");
+
+            $.ajax({
+                url:'{:U("/Mobile/Front/getAreaStatusByAjax")}',
+                type:'post',
+                dataType:'json',
+                data:param,
+                success:function(data){
+                    $("#order_amount").html('0');
+                    var str = '';
+                    $.each(data,function(i,item){
+                        str += '<dl>';
+                        $.each(item,function(key,value){
+                            var id = value.id;
+                            var status = value.status;
+                            var time = value.time;
+                            var price = value.price;
+                            var style = '';
+                            var html  = price;
+                            if(status == 0 || status == 3 || status == 5){
+                                style = ' class="vv_sel"';
+                            }else if(status == 1){
+                                style = ' class="not"';
+                            }else if(status == 4){
+                                style = ' class="admission"';
+                            }else if(status == 6){
+                                style = ' class="expire"';
+                                html  = '未入过期';
+                            }
+                            var aid = ' id = "'+id+'_'+time+'"';
+                            str += '<dd '+style+aid+'>'+html+'</dd>';
+                        })
+                        str += '</dl>';
+                    });
+
+                    $(".book-list").html('');
+                    $(".book-list").html(str);
+                }
+            });
+        });
+
+        var len = $( '.select-time ul li' ).length;
+        // 向左切换
+        $( ".arrow-left" ).bind( 'click' , function(){
+            var getNum = $( '.arrow-right' ).attr( "numflag" );
+            if( getNum > 0 ){
+                $( '.select-time ul li:nth-child( '+ getNum +' )' ).removeClass( "minusLeft" ).addClass( "minusRight" );
+                console.log(getNum);
+                $( '.arrow-right' ).attr( "numflag" , getNum - 1 );
+            }
+        });
+        // 向右切换
+        $( ".arrow-right" ).click( function(){
+            var getNum = parseInt( $( '.arrow-right' ).attr( "numflag" ) ) + parseInt( 1 );
+            if( getNum <= len - 8 ){
+                $( '.select-time ul li:nth-child( '+ getNum +' )' ).removeClass( "minusRight" ).addClass( "minusLeft" );
+                //$( this ).parent().siblings( ".solid_cont" ).find( ".cont_one:nth-child( "+ numFlag +" )" ).removeClass( "minusRight" ).addClass( "minusLeft" );
+                $( this ).attr( "numFlag", getNum );
+            }
+        });
+
+        /*关闭弹出层*/
+        $( '.close-dialog' ).bind( 'click' , function() {
+            $( this ).closest( '.overlay' ).removeClass( 'show' );
+            if($(this).attr("id") == 'orderSuccess_close'){
+                window.location.reload();
+            }
+        });
+        /*关闭弹出层*/
+        $( '.operate' ).bind( 'click' , function() {
+            $( this ).closest( '.overlay' ).removeClass( 'show' );
+            if($(this).attr("id") == 'orderSuccess_closebtn'){
+                window.location.reload();
+            }
+        });
+
+    });
+
+</script>
+
+
+<!--页面弹出层模板-->
+<div id="order_list_tmp" style="display: none;">
+    <div class="order-list" id="order_{order_number}">
+        <p class="order-num">订单号：<span>{order_number}</span></p>
+        <!--one begin-->
+        <div class="order-info">
+            <img class="site-sign" src="{order_icon}" style="width: 33px; height: 32px;">
+            <div>
+                <p class="name">{order_name}</p>
+                <p class="time-txt"><span class="time">{order_week} {order_date} {order_time} 共{order_hour} </span><span class="price">合计：<em class="order_amount">{order_amount}元</em></span></p>
+            </div>
+        </div>
+        <!--one end-->
+        <p class="operate-area">
+            <a onclick="cancelOrder('{order_number}','{order_amount}','{order_id}')">退订</a><a onclick="changeOrder( '{order_number}','{order_amount}','{order_id}' )">改定</a><a class="confirm" onclick="confirmOrder('{order_number}')">确认入场</a>
+        </p>
+    </div>
+</div>
+
+<div id="order_info_tmp" style="display: none;">
+    <div class="order-info">
+        <img class="site-sign" src="__PUBLIC__/Front/img/green-badmintion.png">
+        <div>
+            <p class="name">{spaceinfo}</p>
+            <p class="time-txt"><span class="time">{weekinfo} {dateinfo} {timeinfo}（共{hourinfo}小时）</span><span class="price">场地费：<em>{amount}元</em></span></p>
+        </div>
+    </div>
+</div>
+
+<div id="ticket_list_tmp" style="display: none;">
+    <div class="order-list" id="ticket_{number}">
+        <p class="order-num">编号：<span>{number}</span></p>
+        <!--one begin-->
+        <div class="order-info">
+            <img class="site-sign" src="{tag}" style="width: 33px; height: 32px;">
+            <div>
+                <p class="name">{title}({gttype}) x {count}  <span style="font-weight: normal; padding-left: 20px; font-size: 14px;">{price}{unit}</span><span style="float: right; margin-right: 20px; color: red;">散票</span></p>
+                <p class="time-txt"><span class="time" style="padding-right: 20px;">{datezone} {timezone}</span><span class="price" style="width: 170px;">合计：<em class="order_amount">{amount}元</em></span></p>
+            </div>
+        </div>
+        <!--one end-->
+        <p class="operate-area">
+            <a href="javascript:void(0)">&nbsp;</a><a href="javascript:void(0)">&nbsp;</a><a class="confirm" onclick="confirmTicketOrder('{number}')">确认入场</a>
+        </p>
+    </div>
+</div>
+
+<div id="ticket_info_tmp" style="display: none;">
+    <div class="order-info">
+        <img class="site-sign" src="{tag}">
+        <div>
+            <p class="name">{title}({gttype}) x {count}</p>
+            <p class="time-txt"><span class="time" style="padding-right: 20px;">{datezone} {timezone} {price}{unit}</span><span class="price">合计：<em>{amount}元</em></span></p>
+        </div>
+    </div>
+</div>
+<!--页面弹出层模板-->
+</body>
+</html>

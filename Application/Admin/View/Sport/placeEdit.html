@@ -1,0 +1,94 @@
+<extend name="Public/base"/>
+
+<block name="body">
+      <input type='hidden' value='{$place.gid}' id='gid'>
+      <input type='hidden' value='{$place.shid}' id='shid'>
+      <input type='hidden' value='{$place.spaceid}' id='spaceid'>
+     <script src="__JS__/selectThreeInit.js"></script>
+    <div class="main-title">
+        <h2>编辑片区</h2>
+    </div>
+    <form action="{:U(Sport/hallAdd)}" method="post" class="form-horizontal">
+         <div class="form-item">
+            <label class="item-label">场馆选择<span class="check-tips"></span></label>
+            <div class="controls">
+                <select class="gym" name="gid" >
+                </select>  
+            </div>
+        </div>
+        <input type='hidden' name='id' value='{$place.id}'>
+        <div class="form-item">
+            <label class="item-label">名称<span class="check-tips"></span></label>
+            <div class="controls">
+                <input type="text" class="text input-large" name="name" value="{$place.name}">
+            </div>
+        </div>
+            <div class="form-item">
+            <label class="item-label">预订配置选择<span class="check-tips"></span></label>
+            <div class="controls">
+                <select name="orderconfigid">
+                <volist name="orderConfig" id="vo">
+                    <option value="{$vo.id}" <if condition="$vo.id eq $place['orderconfigid']">selected</if> >最低{$vo.minhour}小时-最多时长{$vo.maxhour}小时--最多{$vo.maxplace}场地</option>
+                </volist>
+            </select>
+            </div>
+        </div>
+   <div class="form-item">
+            <label class="item-label">价格配置选择<span class="check-tips"></span></label>
+            <div class="controls">
+             <select name="priceconfigid" id="priceconfigid">
+                <volist name="priceConfig" id="vo">
+                     <option value="{$vo.id}" <if condition="$vo.id eq $place['priceconfigid']">selected</if>>{$vo.title}</option>
+                </volist>  
+            </select>
+      <div class="data-table table-striped"  id="priceTable">
+          <table class="" style="width:25%">
+       <thead>
+            <tr>
+                    <th class="">起止时间</th>
+                    <th class="">价格</th>
+            </tr>
+         </thead>
+    <tbody id="detailList">
+    </tbody>
+    </table>
+              </div>    
+            </div>
+        </div>
+         <div class="form-item">
+            <label class="item-label">排序<span class="check-tips"></span></label>
+            <div class="controls">
+                <input type="text" class="text input-large" name="sort" value="{$place.sort}">
+            </div>
+        </div>
+        <div class="form-item">
+            <label class="item-label">片区描述 </label>
+            <div class="controls">
+            <label class="textarea input-large">
+                    <textarea name="description">{$place.description}</textarea>
+            </label>                
+            </div>
+        </div>
+         <div class="form-item">
+            <label class="item-label">备注 </label>
+            <div class="controls">
+            <label class="textarea input-large">
+                    <textarea name="mark">{$place.mark}</textarea>
+            </label>				
+            </div>
+		</div>
+        <div class="form-item">
+            <button class="btn submit-btn ajax-post" id="submit" type="submit" target-form="form-horizontal">确 定</button>
+            <button class="btn btn-return" onclick="javascript:history.back(-1);return false;">返 回</button>
+        </div>
+    </form>
+</block>
+
+<block name="script">
+     <script src="__JS__/priceInit.js"></script>
+    <script src="__JS__/priceConfig.js"></script>
+    <script type="text/javascript">
+        //导航高亮
+   highlight_subnav('{:U('User/index')}');
+    </script>
+</block>

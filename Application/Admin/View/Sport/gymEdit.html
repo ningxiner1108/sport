@@ -1,0 +1,198 @@
+<extend name="Public/base"/>
+
+<block name="body">
+  <!--<script src="jquery.js"></script>-->
+  <script src="__JS__/jquery.cxselect.min.js"></script>
+  <script type="text/javascript" src="__STATIC__/uploadify/jquery.uploadify.min.js"></script>
+
+    <div class="main-title">
+        <h2>编辑体育馆</h2>
+    </div>
+    <form action="{:U(Sport/gymAdd)}" method="post" class="form-horizontal">
+        <div class="form-item">
+            <label class="item-label">体育馆名称<span class="check-tips"></span></label>
+            <div class="controls">
+                <input type="text" class="text input-large" name="name" value="{$gym.name}">
+            </div>
+        </div>
+        <input type='hidden' name='gid' value='{$gym.id}'>
+        <div class="form-item">
+            <label class="item-label">区域选择<span class="check-tips"></span></label>
+            <div class="controls">
+            <div id="element_id">
+                <select class="province" data-value="{$gym.province}" name='province'></select>
+                <select class="city" data-value="{$gym.city}" name='city'></select>
+                <select class="area" data-value="{$gym.area}" name='area'></select>
+            </div>
+<script>
+// 设置全局默认值，需在引入 <script src="jquery.cxselect.js"> 之后，调用之前设置 
+$.cxSelect.defaults.url = '__JS__/cityData.min.json'; // 提示：如果服务器不支持 .json 类型文件，请将文件改为 .js 文件 
+$.cxSelect.defaults.nodata = 'none';     
+// selects 为数组形式，请注意顺序 
+$('#element_id').cxSelect({ 
+    selects: ['province', 'city', 'area'], 
+    nodata: 'none' 
+}); 
+ 
+
+</script>
+            </div>
+        </div>
+        <div class="form-item">
+            <label class="item-label">街道地址</label>
+            <div class="controls">
+                <input type="text" class="text input-large" name="address" value="{$gym.address}">
+            </div>
+        </div>
+         <div class="form-item">
+            <label class="item-label">场馆类型选择<span class="check-tips"></span></label>
+            <div class="controls">
+                <select name="type">
+                     <option value="0">请选择</option>
+                <volist name="sportType" id="vo">
+                    <option value="{$vo.id}" <if condition="$vo.id eq $gym['type']">selected</if>>{$vo.name}</option>
+                </volist>
+            </select>
+            </div>
+        </div>
+        <div class="form-item">
+            <label class="item-label">从属管理员选择<span class="check-tips"></span></label>
+            <div class="controls">
+                <select name="adminids">
+                 <option value="0">请选择</option>
+                <volist name="users" id="vo">
+                    <option value="{$vo.id}" <if condition="$vo.id eq $gym['adminids']">selected</if> >{$vo.username}</option>
+                </volist>
+            </select>
+            </div>
+        </div>
+        <div class="form-item">
+            <label class="item-label">预订配置选择<span class="check-tips"></span></label>
+            <div class="controls">
+                <select name="orderconfigid">
+                <option value="0">请选择</option>
+                <volist name="orderConfig" id="vo">
+                    <option value="{$vo.id}" <if condition="$vo.id eq $gym['orderconfigid']">selected</if>>最低{$vo.minhour}小时-最多{$vo.maxhour}小时--最多{$vo.maxplace}个场地</option>
+                </volist>
+            </select>
+            </div>
+        </div>
+        <div class="form-item">
+            <label class="item-label">价格配置选择<span class="check-tips"></span></label>
+            <div class="controls">
+             <select name="priceconfigid" id="priceconfigid">
+                <volist name="priceConfig" id="vo">
+                     <option value="{$vo.id}" <if condition="$vo.id eq $gym['priceconfigid']">selected</if>>{$vo.title}</option>
+                </volist>  
+            </select>
+      <div class="data-table table-striped"  id="priceTable">
+          <table class="" style="width:25%">
+       <thead>
+            <tr>
+                    <th class="">起止时间</th>
+                    <th class="">价格</th>
+            </tr>
+         </thead>
+    <tbody id="detailList">
+    </tbody>
+    </table>
+              </div>    
+            </div>
+        </div>
+        <div class="form-item">
+            <label class="item-label">图标<span class="check-tips"></span></label>
+             <div class="controls">
+            <input type="file" id="upload_picture_logo">
+            <input type="hidden" name="logo" id="cover_id_logo"/>
+            <div class="upload-img-box">
+            
+            </div>
+            <img src="{$gym.logo}">
+    </div>
+    <script type="text/javascript">
+    //上传图片
+/* 初始化上传插件 */
+    $("#upload_picture_logo").uploadify({
+        "height"          : 30,
+        "swf"             : "__STATIC__/uploadify/uploadify.swf",
+        "fileObjName"     : "download",
+        "buttonText"      : "上传图片",
+        
+        
+        "uploader"        : "{:U('File/uploadPicture',array('session_id'=>session_id()))}",
+        "width"           : 120,
+        'removeTimeout'	  : 1,
+        'fileTypeExts'	  : '*.jpg; *.png; *.gif;',
+        "onUploadSuccess" : uploadPicturelogo,
+        'onFallback' : function() {
+            alert('未检测到兼容版本的Flash.');
+        }
+    });
+    function uploadPicturelogo(file, data){
+        var data = $.parseJSON(data);
+        var src = '';
+        if(data.status){
+                $("#cover_id_logo").val(data.path);
+                src = data.url || '__ROOT__' + data.path
+                $("#cover_id_logo").parent().find('.upload-img-box').html(
+                        '<div class="upload-pre-item"><img src="__ROOT__' + src + '"/></div>'
+                );
+        } else {
+                updateAlert(data.info);
+                setTimeout(function(){
+                $('#top-alert').find('button').click();
+                $(that).removeClass('disabled').prop('disabled',false);
+            },1500);
+        }
+    }
+    </script>
+        </div>
+          <div class="form-item">
+            <label class="item-label">联系人<span class="check-tips"></span></label>
+            <div class="controls">
+                <input type="text" class="text input-large" name="linkman" value="{$gym.linkman}">
+            </div>
+        </div>
+          <div class="form-item">
+            <label class="item-label">联系电话<span class="check-tips"></span></label>
+            <div class="controls">
+                <input type="text" class="text input-large" name="telephone" value="{$gym.telephone}">
+            </div>
+        </div>
+         <div class="form-item">
+            <label class="item-label">排序<span class="check-tips"></span></label>
+            <div class="controls">
+                <input type="text" class="text input-large" name="sort" value="{$gym.sort}">
+            </div>
+        </div>
+          <div class="form-item">
+            <label class="item-label">描述 </label>
+            <div class="controls">
+            <label class="textarea input-large">
+                    <textarea name="description">{$gym.description}</textarea>
+            </label>				
+            </div>
+		</div>
+         <div class="form-item">
+            <label class="item-label">备注 </label>
+            <div class="controls">
+            <label class="textarea input-large">
+                    <textarea name="mark">{$gym.mark}</textarea>
+            </label>				
+            </div>
+		</div>
+        <div class="form-item">
+            <button class="btn submit-btn ajax-post" id="submit" type="submit" target-form="form-horizontal">确 定</button>
+            <button class="btn btn-return" onclick="javascript:history.back(-1);return false;">返 回</button>
+        </div>
+    </form>
+</block>
+
+<block name="script">
+    <script src="__JS__/priceInit.js"></script>
+    <script src="__JS__/priceConfig.js"></script>
+    <script type="text/javascript">
+        //导航高亮
+        highlight_subnav('{:U('User/index')}');
+    </script>
+</block>

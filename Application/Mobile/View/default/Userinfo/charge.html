@@ -1,0 +1,47 @@
+<extend name="Base/commonbg"/>
+
+<block name="body">
+    <style>
+        .charge_money ul{width: 100%; float: left;}
+        .charge_money ul li{width: 100px; height: 80px; line-height: 80px; font-size: 20px; text-align: center; border: solid 1px #2CA9E9; color: #2CA9E9; float: left; margin-left: 26px; margin-top: 30px;}
+
+    </style>
+    <div class="payfor-success register-success" style="position: relative; bottom: 0px;">
+        <div style="background-color: white;border: solid 1px #CCC; border-top-width: 0px; line-height: 40px; text-align: left; padding-left: 20px; font-size: 16px;">一卡通账号：<span style="color: #45a869; font-size: 16px;">{$number}12123123</span></div>
+        <div style="background-color: white;border: solid 1px #CCC; border-top-width: 0px; line-height: 40px; text-align: left; padding-left: 20px; font-size: 16px;">手机号码：<span style="color: #45a869; font-size: 16px;">{$phone}123131231</span></div>
+
+        <div class="charge_money">
+            <ul>
+                <li id="100">100元</li>
+                <li id="200">200元</li>
+                <li id="300">300元</li>
+                <li id="500">500元</li>
+                <li id="1000">1000元</li>
+            </ul>
+            <ul>
+                <li>其他金额</li>
+                <li id="other" style="border-width: 0px; width: 240px;">
+                    <input type="text" name="money" placeholder="充值金额为100的整倍数" style="width: 240px;">
+                </li>
+            </ul>
+
+        </div>
+
+        <div style="clear:both;"></div>
+        <div style="position: fixed; bottom: 0px; background-color: white; width: 100%; height: 50px; text-align: left; font-size: 20px; padding-top: 12px; padding-left: 10px;">
+            充值金额：<span style="color: red; font-size: 20px;"><span id="amount" style="color: red; font-size: 20px;">0</span>元</span>
+            <div style="background-color: #45a869; text-align: center; border-radius: 5px; font-size: 16px; padding: 10px; color: white; width:100px; float: right; margin-right: 20px; ">确认充值</div>
+        </div>
+    </div>
+    <script type="text/javascript" language="javascript" src="__PUBLIC__/Mobile/js/vendor/zepto.min.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            $(".charge_money ul li").bind('click',function(){
+                var id = $(this).attr("id");
+                if(id != 'other'){
+                    $("#amount").html(id);
+                }
+            });
+        });
+    </script>
+</block>

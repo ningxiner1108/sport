@@ -1,0 +1,32 @@
+<extend name="Base/common"/>
+
+<block name="body">
+    <!--搜索定位 begin-->
+    <section class="search-position">
+        <p>
+            <span class="position"><i class="position-icon"></i>南京</span>
+            <input type="text" placeholder="搜索体育馆" class="search-gy">
+        </p>
+
+    </section>
+    <!--搜索定位 end-->
+
+    <!--列表 begin-->
+    <section class="gymnasium-list list">
+        <ul>
+            <volist name="datalist" id="vo">
+            <li>
+                <a class="clearfix" href="{:U('/Mobile/Index/sportHall/id/'.$vo['id'])}">
+                    <img class="limg" src="{$vo.logo}">
+                    <div class="txt">
+                        <p class="name line-clamp1">{$vo.name}</p>
+                        <p class="mtxt line-clamp1">{$vo.city}{$vo.area}{$vo.address}</p>
+                    </div>
+                    <i class="right-arrow pavm"></i>
+                </a>
+            </li>
+            </volist>
+        </ul>
+    </section>
+    <!--列表 end-->
+</block>
