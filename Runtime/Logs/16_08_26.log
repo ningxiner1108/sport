@@ -1,0 +1,42 @@
+[ 2016-08-26T11:12:14+08:00 ] 127.0.0.1 /index.php/Admin/Sport/
+ERR: 非法操作:index
+
+[ 2016-08-26T11:12:35+08:00 ] 127.0.0.1 /index.php/Admin/Sport/
+ERR: 非法操作:index
+
+[ 2016-08-26T11:12:48+08:00 ] 127.0.0.1 /index.php/Admin/Sport/function%20URL()%20%7B%20[native%20code]%20%7D/getGymData
+ERR: 非法操作:function url() { [native code] }
+
+[ 2016-08-26T11:12:51+08:00 ] 127.0.0.1 /index.php/Admin/Sport/function%20URL()%20%7B%20[native%20code]%20%7D/getPriceDetail?id=32
+ERR: 非法操作:function url() { [native code] }
+
+[ 2016-08-26T11:12:53+08:00 ] 127.0.0.1 /index.php/Admin/Sport/function%20URL()%20%7B%20[native%20code]%20%7D/getPriceDetail?id=29
+ERR: 非法操作:function url() { [native code] }
+
+[ 2016-08-26T11:12:54+08:00 ] 127.0.0.1 /index.php/Admin/Sport/function%20URL()%20%7B%20[native%20code]%20%7D/getGymData
+ERR: 非法操作:function url() { [native code] }
+
+[ 2016-08-26T11:13:00+08:00 ] 127.0.0.1 /index.php/Admin/Sport/
+ERR: 非法操作:index
+
+[ 2016-08-26T11:13:04+08:00 ] 127.0.0.1 /index.php/Admin/Sport/function%20URL()%20%7B%20[native%20code]%20%7D/getPriceDetail?id=32
+ERR: 非法操作:function url() { [native code] }
+
+[ 2016-08-26T11:14:13+08:00 ] 127.0.0.1 /index.php/Admin/Sport/
+ERR: 非法操作:index
+
+[ 2016-08-26T11:21:23+08:00 ] 127.0.0.1 /index.php/Admin/Sport/
+ERR: 非法操作:index
+
+[ 2016-08-26T11:29:05+08:00 ] 127.0.0.1 /index.php/Admin/Sport/function%20URL()%20%7B%20[native%20code]%20%7D/getGymData
+ERR: 非法操作:function url() { [native code] }
+
+[ 2016-08-26T11:29:57+08:00 ] 127.0.0.1 /index.php/Admin/Sport/
+ERR: 非法操作:index
+
+[ 2016-08-26T11:30:16+08:00 ] 127.0.0.1 /index.php/Admin/Sport/
+ERR: 非法操作:index
+
+[ 2016-08-26T11:30:16+08:00 ] 127.0.0.1 /index.php/Admin/Sport/
+ERR: 非法操作:index
+

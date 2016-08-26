@@ -1,12 +1,11 @@
 $('#priceconfigid').bind('change', function(){ 
     var val = $(this).val(); 
-    console.log(val);
     if(val!==0){
         $("#priceTable").show();
      }
      $.ajax({
             type: "get",
-            url: "http://sport.24parking.com.cn/index.php/Admin/Sport/getPriceDetail",
+            url: URL+"/getPriceDetail",
             dataType:"json",
             data: {"id":val},
             success: function(data){

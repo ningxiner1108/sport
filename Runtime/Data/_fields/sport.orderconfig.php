@@ -1,0 +1,1 @@
+a:6:{i:0;s:2:"id";i:1;s:7:"minhour";i:2;s:7:"maxhour";i:3;s:8:"maxplace";s:3:"_pk";s:2:"id";s:5:"_type";a:4:{s:2:"id";s:7:"int(11)";s:7:"minhour";s:13:"decimal(11,1)";s:7:"maxhour";s:7:"int(11)";s:8:"maxplace";s:7:"int(11)";}}

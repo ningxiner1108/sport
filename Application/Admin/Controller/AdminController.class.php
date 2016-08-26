@@ -352,7 +352,9 @@ class AdminController extends Controller {
                     $list[$key]['url'] = MODULE_NAME.'/'.$value['url'];
                 }
             }
+//            print_r($list);die;
             $nodes = list_to_tree($list,$pk='id',$pid='pid',$child='operator',$root=0);
+//            print_r($nodes);die;
             foreach ($nodes as $key => $value) {
                 if(!empty($value['operator'])){
                     $nodes[$key]['child'] = $value['operator'];

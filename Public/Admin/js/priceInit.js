@@ -2,7 +2,7 @@
   var val = $('#priceconfigid option:selected').val();
    $.ajax({
             type: "get",
-            url: "http://sport.24parking.com.cn/index.php/Admin/Sport/getPriceDetail",
+            url: URL+"/getPriceDetail",
             dataType:"json",
             data: {"id":val},
             success: function(data){

@@ -1,0 +1,54 @@
+[ 2016-08-25T10:24:41+08:00 ] 127.0.0.1 /index.php/Admin/Addons/other.html
+ERR: 非法操作:other
+
+[ 2016-08-25T10:25:15+08:00 ] 127.0.0.1 /index.php/Admin/Addons/other.html
+ERR: 非法操作:other
+
+[ 2016-08-25T11:03:59+08:00 ] 127.0.0.1 /index.php/Admin/Addons/other.html
+ERR: 非法操作:other
+
+[ 2016-08-25T11:06:44+08:00 ] 127.0.0.1 /index.php/Admin/Addons/other.html
+ERR: 非法操作:other
+
+[ 2016-08-25T11:06:50+08:00 ] 127.0.0.1 /index.php/Admin/Addons/other.html
+ERR: 非法操作:other
+
+[ 2016-08-25T13:45:13+08:00 ] 127.0.0.1 /index.php/Admin/Addons/other.html
+ERR: 非法操作:other
+
+[ 2016-08-25T13:57:04+08:00 ] 127.0.0.1 /index.php/Admin/Site/gym.html
+ERR: 无法加载控制器:Site
+
+[ 2016-08-25T15:57:12+08:00 ] 127.0.0.1 /index.php/Admin/Sport/
+ERR: 非法操作:index
+
+[ 2016-08-25T15:57:20+08:00 ] 127.0.0.1 /index.php/Admin/Sport/
+ERR: 非法操作:index
+
+[ 2016-08-25T15:58:19+08:00 ] 127.0.0.1 /index.php/Admin/Sport/
+ERR: 非法操作:index
+
+[ 2016-08-25T15:59:22+08:00 ] 127.0.0.1 /index.php/Admin/Sport/
+ERR: 非法操作:index
+
+[ 2016-08-25T16:00:32+08:00 ] 127.0.0.1 /index.php/Admin/Sport/
+ERR: 非法操作:index
+
+[ 2016-08-25T16:00:35+08:00 ] 127.0.0.1 /index.php/Admin/Sport/
+ERR: 非法操作:index
+
+[ 2016-08-25T16:03:03+08:00 ] 127.0.0.1 /index.php/Admin/Sport/
+ERR: 非法操作:index
+
+[ 2016-08-25T16:04:19+08:00 ] 127.0.0.1 /index.php/Admin/Sport/changeStatusGym/method/deleteGym.html
+ERR: 非法操作:changestatusgym
+
+[ 2016-08-25T16:04:24+08:00 ] 127.0.0.1 /index.php/Admin/Sport/changeStatusGym/method/deleteGym.html
+ERR: 非法操作:changestatusgym
+
+[ 2016-08-25T16:04:30+08:00 ] 127.0.0.1 /index.php/Admin/Sport/changeStatusGym/method/deleteGym.html
+ERR: 非法操作:changestatusgym
+
+[ 2016-08-25T16:05:42+08:00 ] 127.0.0.1 /index.php/Admin/Sport/
+ERR: 非法操作:index
+

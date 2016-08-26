@@ -1,6 +1,11 @@
 <extend name="Public/base"/>
 
 <block name="body">
+  <script>
+      var URL = "__URL__";
+      var APP = "__APP__";
+      var ROOT = "__ROOT__";
+  </script>
       <input type='hidden' value='{$place.gid}' id='gid'>
       <input type='hidden' value='{$place.shid}' id='shid'>
       <input type='hidden' value='{$place.spaceid}' id='spaceid'>

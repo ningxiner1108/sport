@@ -1,0 +1,207 @@
+[ 2016-08-24T09:24:08+08:00 ] 127.0.0.1 /index.php/Admin/think/lists/model/order.html
+ERR: 1054:Unknown column 'view' in 'field list'
+ [ SQL语句 ] : SELECT `number`,`amount`,`view`,`id` FROM `sp_order` ORDER BY id DESC LIMIT 0,10  
+
+[ 2016-08-24T09:25:00+08:00 ] 127.0.0.1 /index.php/Admin/think/lists/model/order.html
+ERR: 1054:Unknown column 'view' in 'field list'
+ [ SQL语句 ] : SELECT `number`,`amount`,`view`,``,`id` FROM `sp_order` ORDER BY id DESC LIMIT 0,10  
+
+[ 2016-08-24T09:25:01+08:00 ] 127.0.0.1 /index.php/Admin/think/lists/model/order.html
+ERR: 1054:Unknown column 'view' in 'field list'
+ [ SQL语句 ] : SELECT `number`,`amount`,`view`,``,`id` FROM `sp_order` ORDER BY id DESC LIMIT 0,10  
+
+[ 2016-08-24T09:25:14+08:00 ] 127.0.0.1 /index.php/Admin/think/lists/model/order.html
+ERR: 1054:Unknown column '' in 'field list'
+ [ SQL语句 ] : SELECT `number`,`amount`,``,`id` FROM `sp_order` ORDER BY id DESC LIMIT 0,10  
+
+[ 2016-08-24T09:25:16+08:00 ] 127.0.0.1 /index.php/Admin/think/lists/model/order.html
+ERR: 1054:Unknown column '' in 'field list'
+ [ SQL语句 ] : SELECT `number`,`amount`,``,`id` FROM `sp_order` ORDER BY id DESC LIMIT 0,10  
+
+[ 2016-08-24T09:25:16+08:00 ] 127.0.0.1 /index.php/Admin/think/lists/model/order.html
+ERR: 1054:Unknown column '' in 'field list'
+ [ SQL语句 ] : SELECT `number`,`amount`,``,`id` FROM `sp_order` ORDER BY id DESC LIMIT 0,10  
+
+[ 2016-08-24T09:25:17+08:00 ] 127.0.0.1 /index.php/Admin/think/lists/model/order.html
+ERR: 1054:Unknown column '' in 'field list'
+ [ SQL语句 ] : SELECT `number`,`amount`,``,`id` FROM `sp_order` ORDER BY id DESC LIMIT 0,10  
+
+[ 2016-08-24T09:28:31+08:00 ] 127.0.0.1 /index.php/Admin/Model/generate.html
+ERR: 1062:Duplicate entry '4' for key 'PRIMARY'
+ [ SQL语句 ] : INSERT INTO `sp_model` (`id`,`name`,`title`,`extend`,`relation`,`need_pk`,`field_sort`,`field_group`,`attribute_list`,`template_list`,`template_add`,`template_edit`,`list_grid`,`list_row`,`search_key`,`search_list`,`create_time`,`update_time`,`status`,`engine_type`) VALUES (4,'order','order',0,'',1,'{\"1\":[\"20\",\"19\",\"17\",\"16\",\"14\",\"13\",\"12\",\"11\",\"10\",\"9\",\"5\",\"3\",\"2\",\"33\",\"34\",\"35\",\"36\",\"37\",\"38\",\"39\",\"40\",\"41\",\"42\",\"43\",\"44\",\"45\",\"46\",\"47\",\"48\",\"49\",\"50\",\"51\",\"52\"]}','1:基础','','','','','number:订单编号\r\namount:余额',10,'','',1471254851,1471255046,1,'MyISAM')
+
+[ 2016-08-24T09:28:34+08:00 ] 127.0.0.1 /index.php/Admin/Model/generate.html
+ERR: 1062:Duplicate entry '4' for key 'PRIMARY'
+ [ SQL语句 ] : INSERT INTO `sp_model` (`id`,`name`,`title`,`extend`,`relation`,`need_pk`,`field_sort`,`field_group`,`attribute_list`,`template_list`,`template_add`,`template_edit`,`list_grid`,`list_row`,`search_key`,`search_list`,`create_time`,`update_time`,`status`,`engine_type`) VALUES (4,'order','order',0,'',1,'{\"1\":[\"20\",\"19\",\"17\",\"16\",\"14\",\"13\",\"12\",\"11\",\"10\",\"9\",\"5\",\"3\",\"2\",\"33\",\"34\",\"35\",\"36\",\"37\",\"38\",\"39\",\"40\",\"41\",\"42\",\"43\",\"44\",\"45\",\"46\",\"47\",\"48\",\"49\",\"50\",\"51\",\"52\"]}','1:基础','','','','','number:订单编号\r\namount:余额',10,'','',1471254851,1471255046,1,'MyISAM')
+
+[ 2016-08-24T09:33:37+08:00 ] 127.0.0.1 /index.php/Admin/think/lists/model/order.html
+ERR: 1054:Unknown column 'view' in 'field list'
+ [ SQL语句 ] : SELECT `number`,`amount`,`view`,`id` FROM `sp_order` ORDER BY id DESC LIMIT 0,10  
+
+[ 2016-08-24T10:20:37+08:00 ] 127.0.0.1 /index.php/Admin/think/lists/model/document.html
+ERR: 1054:Unknown column 'status_text' in 'field list'
+ [ SQL语句 ] : SELECT `id`,`category_id`,`title`,`type`,`level`,`update_time`,`status_text`,`view` FROM `sp_document` ORDER BY id DESC LIMIT 0,10  
+
+[ 2016-08-24T10:24:20+08:00 ] 127.0.0.1 /index.php/Admin/think/lists/model/document.html
+ERR: 1054:Unknown column 'status_text' in 'field list'
+ [ SQL语句 ] : SELECT `id`,`category_id`,`title`,`type`,`level`,`update_time`,`status_text`,`view` FROM `sp_document` ORDER BY id DESC LIMIT 0,10  
+
+[ 2016-08-24T10:26:30+08:00 ] 127.0.0.1 /index.php/Admin/think/lists/model/document.html
+ERR: 1054:Unknown column 'status_text' in 'field list'
+ [ SQL语句 ] : SELECT `id`,`category_id`,`title`,`type`,`level`,`update_time`,`status_text`,`view` FROM `sp_document` ORDER BY id DESC LIMIT 0,10  
+
+[ 2016-08-24T10:26:44+08:00 ] 127.0.0.1 /index.php/Admin/think/lists/model/document.html
+ERR: 1054:Unknown column 'status_text' in 'field list'
+ [ SQL语句 ] : SELECT `id`,`category_id`,`title`,`type`,`level`,`update_time`,`status_text`,`view` FROM `sp_document` ORDER BY id DESC LIMIT 0,10  
+
+[ 2016-08-24T10:27:14+08:00 ] 127.0.0.1 /index.php/Admin/think/lists/model/document.html
+ERR: 1054:Unknown column 'status_text' in 'field list'
+ [ SQL语句 ] : SELECT `id`,`category_id`,`title`,`type`,`level`,`update_time`,`status_text`,`view` FROM `sp_document` ORDER BY id DESC LIMIT 0,10  
+
+[ 2016-08-24T10:43:04+08:00 ] 127.0.0.1 /index.php/Admin/think/lists/model/gym.html
+ERR: 1054:Unknown column '' in 'field list'
+ [ SQL语句 ] : SELECT `name`,`province`,`city`,`area`,`address`,`id`,`` FROM `sp_gym` ORDER BY id DESC LIMIT 0,10  
+
+[ 2016-08-24T10:43:32+08:00 ] 127.0.0.1 /index.php/Admin/think/lists/model/gym.html
+ERR: 1054:Unknown column '' in 'field list'
+ [ SQL语句 ] : SELECT `name`,``,`id` FROM `sp_gym` ORDER BY id DESC LIMIT 0,10  
+
+[ 2016-08-24T10:43:33+08:00 ] 127.0.0.1 /index.php/Admin/think/lists/model/gym.html
+ERR: 1054:Unknown column '' in 'field list'
+ [ SQL语句 ] : SELECT `name`,``,`id` FROM `sp_gym` ORDER BY id DESC LIMIT 0,10  
+
+[ 2016-08-24T10:43:34+08:00 ] 127.0.0.1 /index.php/Admin/think/lists/model/gym.html
+ERR: 1054:Unknown column '' in 'field list'
+ [ SQL语句 ] : SELECT `name`,``,`id` FROM `sp_gym` ORDER BY id DESC LIMIT 0,10  
+
+[ 2016-08-24T10:43:35+08:00 ] 127.0.0.1 /index.php/Admin/think/lists/model/gym.html
+ERR: 1054:Unknown column '' in 'field list'
+ [ SQL语句 ] : SELECT `name`,``,`id` FROM `sp_gym` ORDER BY id DESC LIMIT 0,10  
+
+[ 2016-08-24T10:43:40+08:00 ] 127.0.0.1 /index.php/Admin/think/lists/model/gym.html
+ERR: 1054:Unknown column '' in 'field list'
+ [ SQL语句 ] : SELECT `name`,``,`id` FROM `sp_gym` ORDER BY id DESC LIMIT 0,10  
+
+[ 2016-08-24T10:44:25+08:00 ] 127.0.0.1 /index.php/Admin/think/lists/model/gym.html
+ERR: 1054:Unknown column '' in 'field list'
+ [ SQL语句 ] : SELECT `name`,``,`id` FROM `sp_gym` ORDER BY id DESC LIMIT 0,10  
+
+[ 2016-08-24T10:44:55+08:00 ] 127.0.0.1 /index.php/Admin/think/lists/model/gym.html
+ERR: 1054:Unknown column '' in 'field list'
+ [ SQL语句 ] : SELECT `name`,`province`,`city`,`area`,`address`,`id`,`` FROM `sp_gym` ORDER BY id DESC LIMIT 0,10  
+
+[ 2016-08-24T10:44:58+08:00 ] 127.0.0.1 /index.php/Admin/think/lists/model/gym.html
+ERR: 1054:Unknown column '' in 'field list'
+ [ SQL语句 ] : SELECT `name`,`province`,`city`,`area`,`address`,`id`,`` FROM `sp_gym` ORDER BY id DESC LIMIT 0,10  
+
+[ 2016-08-24T10:44:58+08:00 ] 127.0.0.1 /index.php/Admin/think/lists/model/gym.html
+ERR: 1054:Unknown column '' in 'field list'
+ [ SQL语句 ] : SELECT `name`,`province`,`city`,`area`,`address`,`id`,`` FROM `sp_gym` ORDER BY id DESC LIMIT 0,10  
+
+[ 2016-08-24T10:44:59+08:00 ] 127.0.0.1 /index.php/Admin/think/lists/model/gym.html
+ERR: 1054:Unknown column '' in 'field list'
+ [ SQL语句 ] : SELECT `name`,`province`,`city`,`area`,`address`,`id`,`` FROM `sp_gym` ORDER BY id DESC LIMIT 0,10  
+
+[ 2016-08-24T10:45:00+08:00 ] 127.0.0.1 /index.php/Admin/think/lists/model/gym.html
+ERR: 1054:Unknown column '' in 'field list'
+ [ SQL语句 ] : SELECT `name`,`province`,`city`,`area`,`address`,`id`,`` FROM `sp_gym` ORDER BY id DESC LIMIT 0,10  
+
+[ 2016-08-24T10:46:34+08:00 ] 127.0.0.1 /index.php/Admin/think/lists/model/gym.html
+ERR: 1054:Unknown column '' in 'field list'
+ [ SQL语句 ] : SELECT `name`,`province`,`city`,`area`,`address`,`id`,`` FROM `sp_gym` ORDER BY id DESC LIMIT 0,10  
+
+[ 2016-08-24T10:46:35+08:00 ] 127.0.0.1 /index.php/Admin/think/lists/model/gym.html
+ERR: 1054:Unknown column '' in 'field list'
+ [ SQL语句 ] : SELECT `name`,`province`,`city`,`area`,`address`,`id`,`` FROM `sp_gym` ORDER BY id DESC LIMIT 0,10  
+
+[ 2016-08-24T10:46:36+08:00 ] 127.0.0.1 /index.php/Admin/think/lists/model/gym.html
+ERR: 1054:Unknown column '' in 'field list'
+ [ SQL语句 ] : SELECT `name`,`province`,`city`,`area`,`address`,`id`,`` FROM `sp_gym` ORDER BY id DESC LIMIT 0,10  
+
+[ 2016-08-24T10:47:52+08:00 ] 127.0.0.1 /index.php/Admin/Model/generate.html
+ERR: 1062:Duplicate entry '5' for key 'PRIMARY'
+ [ SQL语句 ] : INSERT INTO `sp_model` (`id`,`name`,`title`,`extend`,`relation`,`need_pk`,`field_sort`,`field_group`,`attribute_list`,`template_list`,`template_add`,`template_edit`,`list_grid`,`list_row`,`search_key`,`search_list`,`create_time`,`update_time`,`status`,`engine_type`) VALUES (5,'gym','gym',0,'',1,'{\"1\":[\"53\",\"54\",\"55\",\"56\",\"57\",\"58\",\"59\",\"60\",\"61\",\"62\",\"63\",\"64\",\"66\",\"67\",\"68\"]}','1:基础','','','','','name:体育馆名称\r\nprovince:省份\r\ncity:市区\r\narea:区县\r\naddress:具体地址\r\nid:操作:[EDIT]&id=[id]|编辑\r\n',10,'','',1472006274,1472006692,0,'MyISAM')
+
+[ 2016-08-24T10:52:47+08:00 ] 127.0.0.1 /index.php/Admin/think/lists/model/gym.html
+ERR: 1054:Unknown column '' in 'field list'
+ [ SQL语句 ] : SELECT `name`,`province`,`city`,`area`,`address`,`id`,`` FROM `sp_gym` ORDER BY id DESC LIMIT 0,10  
+
+[ 2016-08-24T10:53:39+08:00 ] 127.0.0.1 /index.php/Admin/think/lists/model/gym.html
+ERR: 1054:Unknown column '' in 'field list'
+ [ SQL语句 ] : SELECT `name`,`province`,`city`,`area`,`address`,`id`,`` FROM `sp_gym` ORDER BY id DESC LIMIT 0,10  
+
+[ 2016-08-24T10:53:41+08:00 ] 127.0.0.1 /index.php/Admin/think/lists/model/gym.html
+ERR: 1054:Unknown column '' in 'field list'
+ [ SQL语句 ] : SELECT `name`,`province`,`city`,`area`,`address`,`id`,`` FROM `sp_gym` ORDER BY id DESC LIMIT 0,10  
+
+[ 2016-08-24T10:53:41+08:00 ] 127.0.0.1 /index.php/Admin/think/lists/model/gym.html
+ERR: 1054:Unknown column '' in 'field list'
+ [ SQL语句 ] : SELECT `name`,`province`,`city`,`area`,`address`,`id`,`` FROM `sp_gym` ORDER BY id DESC LIMIT 0,10  
+
+[ 2016-08-24T10:53:41+08:00 ] 127.0.0.1 /index.php/Admin/think/lists/model/gym.html
+ERR: 1054:Unknown column '' in 'field list'
+ [ SQL语句 ] : SELECT `name`,`province`,`city`,`area`,`address`,`id`,`` FROM `sp_gym` ORDER BY id DESC LIMIT 0,10  
+
+[ 2016-08-24T10:53:42+08:00 ] 127.0.0.1 /index.php/Admin/think/lists/model/gym.html
+ERR: 1054:Unknown column '' in 'field list'
+ [ SQL语句 ] : SELECT `name`,`province`,`city`,`area`,`address`,`id`,`` FROM `sp_gym` ORDER BY id DESC LIMIT 0,10  
+
+[ 2016-08-24T10:53:42+08:00 ] 127.0.0.1 /index.php/Admin/think/lists/model/gym.html
+ERR: 1054:Unknown column '' in 'field list'
+ [ SQL语句 ] : SELECT `name`,`province`,`city`,`area`,`address`,`id`,`` FROM `sp_gym` ORDER BY id DESC LIMIT 0,10  
+
+[ 2016-08-24T10:53:48+08:00 ] 127.0.0.1 /index.php/Admin/think/lists/model/gym.html
+ERR: 1054:Unknown column '' in 'field list'
+ [ SQL语句 ] : SELECT `name`,`province`,`city`,`area`,`address`,`id`,`` FROM `sp_gym` ORDER BY id DESC LIMIT 0,10  
+
+[ 2016-08-24T10:54:46+08:00 ] 127.0.0.1 /index.php/Admin/think/lists/model/gym.html
+ERR: 1054:Unknown column '' in 'field list'
+ [ SQL语句 ] : SELECT `name`,`province`,`city`,`area`,`address`,`id`,`` FROM `sp_gym` ORDER BY id DESC LIMIT 0,10  
+
+[ 2016-08-24T10:54:48+08:00 ] 127.0.0.1 /index.php/Admin/think/lists/model/gym.html
+ERR: 1054:Unknown column '' in 'field list'
+ [ SQL语句 ] : SELECT `name`,`province`,`city`,`area`,`address`,`id`,`` FROM `sp_gym` ORDER BY id DESC LIMIT 0,10  
+
+[ 2016-08-24T10:54:49+08:00 ] 127.0.0.1 /index.php/Admin/think/lists/model/gym.html
+ERR: 1054:Unknown column '' in 'field list'
+ [ SQL语句 ] : SELECT `name`,`province`,`city`,`area`,`address`,`id`,`` FROM `sp_gym` ORDER BY id DESC LIMIT 0,10  
+
+[ 2016-08-24T10:54:49+08:00 ] 127.0.0.1 /index.php/Admin/think/lists/model/gym.html
+ERR: 1054:Unknown column '' in 'field list'
+ [ SQL语句 ] : SELECT `name`,`province`,`city`,`area`,`address`,`id`,`` FROM `sp_gym` ORDER BY id DESC LIMIT 0,10  
+
+[ 2016-08-24T10:55:41+08:00 ] 127.0.0.1 /index.php/Admin/think/lists/model/gym.html
+ERR: 1054:Unknown column '' in 'field list'
+ [ SQL语句 ] : SELECT `name`,`province`,`city`,`area`,`address`,`id`,`` FROM `sp_gym` ORDER BY id DESC LIMIT 0,10  
+
+[ 2016-08-24T10:59:07+08:00 ] 127.0.0.1 /index.php/Admin/think/lists/model/gym.html
+ERR: 1054:Unknown column '' in 'field list'
+ [ SQL语句 ] : SELECT `name`,``,`id` FROM `sp_gym` ORDER BY id DESC LIMIT 0,10  
+
+[ 2016-08-24T10:59:09+08:00 ] 127.0.0.1 /index.php/Admin/think/lists/model/gym.html
+ERR: 1054:Unknown column '' in 'field list'
+ [ SQL语句 ] : SELECT `name`,``,`id` FROM `sp_gym` ORDER BY id DESC LIMIT 0,10  
+
+[ 2016-08-24T10:59:10+08:00 ] 127.0.0.1 /index.php/Admin/think/lists/model/gym.html
+ERR: 1054:Unknown column '' in 'field list'
+ [ SQL语句 ] : SELECT `name`,``,`id` FROM `sp_gym` ORDER BY id DESC LIMIT 0,10  
+
+[ 2016-08-24T11:00:09+08:00 ] 127.0.0.1 /index.php/Admin/model/del/ids/5.html
+ERR: 1051:Unknown table 'sp_gym2'
+ [ SQL语句 ] : 				DROP TABLE sp_gym2;
+
+[ 2016-08-24T14:04:39+08:00 ] 127.0.0.1 /index.php/Admin/Think/other.html
+ERR: 非法操作:other
+
+[ 2016-08-24T14:07:59+08:00 ] 127.0.0.1 /index.php/Admin/AuthManager/other.html
+ERR: 非法操作:other
+
+[ 2016-08-24T14:08:01+08:00 ] 127.0.0.1 /index.php/Admin/AuthManager/other.html
+ERR: 非法操作:other
+
+[ 2016-08-24T14:08:04+08:00 ] 127.0.0.1 /index.php/Admin/AuthManager/other.html
+ERR: 非法操作:other
+
+[ 2016-08-24T14:08:10+08:00 ] 127.0.0.1 /index.php/Admin/AuthManager/other.html
+ERR: 非法操作:other
+

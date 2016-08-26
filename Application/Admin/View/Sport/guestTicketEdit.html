@@ -1,6 +1,11 @@
 <extend name="Public/base"/>
 
 <block name="body">
+   <script>
+      var URL = "__URL__";
+      var APP = "__APP__";
+      var ROOT = "__ROOT__";
+  </script>
   <!--<script src="jquery.js"></script>-->
      <input type='hidden' value='{$guestTicket.gid}' id='gid'>
       <input type='hidden' value='{$guestTicket.shid}' id='shid'>

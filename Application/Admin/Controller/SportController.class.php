@@ -16,28 +16,28 @@ namespace Admin\Controller;
  */
 class SportController extends AdminController {
 
-    public function _initialize() {
-        $this->assign('_extra_menu', array(
-            '场馆管理' => array(
-                array('title' => "体育馆信息", 'url' => "Sport/gym"),
-                array('title' => "场馆信息", 'url' => "Sport/hall"),
-                array('title' => "场地类型", 'url' => "Sport/spaceType"),
-                array('title' => "片区信息", 'url' => "Sport/place"),
-                array('title' => "散票信息", 'url' => "Sport/guestTicket")
-            ),
-            '订单管理' => array(
-                array('title' => "订单信息", 'url' => "Sport/order"),
+//    public function _initialize() {
+//        $this->assign('_extra_menu', array(
+//            '场馆管理' => array(
+//                array('title' => "体育馆信息", 'url' => "Sport/gym"),
+//                array('title' => "场馆信息", 'url' => "Sport/hall"),
+//                array('title' => "场地类型", 'url' => "Sport/spaceType"),
+//                array('title' => "片区信息", 'url' => "Sport/place"),
+//                array('title' => "散票信息", 'url' => "Sport/guestTicket")
+//            ),
+//            '订单管理' => array(
 //                array('title' => "订单信息", 'url' => "Sport/order"),
-            ),
-            '配置管理' => array(
-                array('title' => "场馆类型", 'url' => "Sport/sportType"),
-                array('title' => "价格设置", 'url' => "Sport/priceConfig"),
-                array('title' => "预订配置", 'url' => "Sport/orderConfig"),
-//                array('title' => "退订改签", 'url' => "Sport/backConfig"),
-            ),
-        ));
-        parent::_initialize();
-    }
+////                array('title' => "订单信息", 'url' => "Sport/order"),
+//            ),
+//            '配置管理' => array(
+//                array('title' => "场馆类型", 'url' => "Sport/sportType"),
+//                array('title' => "价格设置", 'url' => "Sport/priceConfig"),
+//                array('title' => "预订配置", 'url' => "Sport/orderConfig"),
+////                array('title' => "退订改签", 'url' => "Sport/backConfig"),
+//            ),
+//        ));
+//        parent::_initialize();
+//    }
 
     function gym() {
         $data = array();
