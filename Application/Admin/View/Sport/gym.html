@@ -6,11 +6,14 @@
 		<h2>体育馆列表</h2>
 	</div>
 	<div class="cf">
-		<div class="fl">
+          <div class="fl">
+           <if condition="$hidden['add'] eq null"> 
             <a class="btn" href="{:U('Sport/gymAdd')}">新 增</a>
-          
+          </if>
+            <if condition="$hidden['delete'] eq null"> 
             <button class="btn ajax-post confirm" url="{:U('Sport/gymDelete')}" target-form="ids">删 除</button>
-        </div>
+           </if>
+          </div>
 
         <!-- 高级搜索 -->
 		<div class="search-form fr cf">
@@ -49,8 +52,10 @@
 			     {$vo.typename}
             </td>
 			<td>
-			 <a href="{:U('Sport/gymEdit?id='.$vo['id'])}" class="get">编辑</a>
-                </td>
+                          <if condition="$hidden['edit'] eq null"> 
+			         <a href="{:U('Sport/gymEdit?id='.$vo['id'])}" class="get">编辑</a>
+                          </if>
+                            </td>
 		</tr>
 		</volist>
 		<else/>

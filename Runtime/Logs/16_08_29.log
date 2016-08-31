@@ -1,0 +1,147 @@
+[ 2016-08-29T09:49:22+08:00 ] 127.0.0.1 /index.php/Admin/sport/dataTree?id=1
+ERR: 非法操作:datatree
+
+[ 2016-08-29T09:51:15+08:00 ] 127.0.0.1 /index.php/Admin/sport/dataTree?id=1
+ERR: 非法操作:datatree
+
+[ 2016-08-29T09:51:16+08:00 ] 127.0.0.1 /index.php/Admin/sport/dataTree?id=1
+ERR: 非法操作:datatree
+
+[ 2016-08-29T09:51:17+08:00 ] 127.0.0.1 /index.php/Admin/sport/dataTree?id=1
+ERR: 非法操作:datatree
+
+[ 2016-08-29T09:51:17+08:00 ] 127.0.0.1 /index.php/Admin/sport/dataTree?id=1
+ERR: 非法操作:datatree
+
+[ 2016-08-29T09:51:17+08:00 ] 127.0.0.1 /index.php/Admin/sport/dataTree?id=1
+ERR: 非法操作:datatree
+
+[ 2016-08-29T09:51:44+08:00 ] 127.0.0.1 /index.php/Admin/sport/gymData
+ERR: 非法操作:gymdata
+
+[ 2016-08-29T09:51:49+08:00 ] 127.0.0.1 /index.php/Admin/sport/gymData
+ERR: 非法操作:gymdata
+
+[ 2016-08-29T09:51:50+08:00 ] 127.0.0.1 /index.php/Admin/sport/gymData
+ERR: 非法操作:gymdata
+
+[ 2016-08-29T09:51:50+08:00 ] 127.0.0.1 /index.php/Admin/sport/gymData
+ERR: 非法操作:gymdata
+
+[ 2016-08-29T09:52:03+08:00 ] 127.0.0.1 /index.php/Admin/Sport/
+ERR: 非法操作:index
+
+[ 2016-08-29T09:58:35+08:00 ] 127.0.0.1 /index.php/Admin/Sport/dataTree?id=1
+ERR: 参数错误或者未定义:gid
+
+[ 2016-08-29T09:58:36+08:00 ] 127.0.0.1 /index.php/Admin/Sport/dataTree?id=1
+ERR: 参数错误或者未定义:gid
+
+[ 2016-08-29T09:58:36+08:00 ] 127.0.0.1 /index.php/Admin/Sport/dataTree?id=1
+ERR: 参数错误或者未定义:gid
+
+[ 2016-08-29T09:58:36+08:00 ] 127.0.0.1 /index.php/Admin/Sport/dataTree?id=1
+ERR: 参数错误或者未定义:gid
+
+[ 2016-08-29T13:46:46+08:00 ] 127.0.0.1 /index.php/Admin/AuthManager/gym/group_name/%E6%B5%8B%E8%AF%95%E7%94%A8%E6%88%B7/group_id/2.html
+ERR: 非法操作:gym
+
+[ 2016-08-29T13:46:52+08:00 ] 127.0.0.1 /index.php/Admin/AuthManager/gym/group_name/%E9%BB%98%E8%AE%A4%E7%94%A8%E6%88%B7%E7%BB%84/group_id/1.html
+ERR: 非法操作:gym
+
+[ 2016-08-29T13:46:56+08:00 ] 127.0.0.1 /index.php/Admin/AuthManager/gym/group_name/%E6%B5%8B%E8%AF%95%E7%94%A8%E6%88%B7/group_id/2.html
+ERR: 非法操作:gym
+
+[ 2016-08-29T13:48:19+08:00 ] 127.0.0.1 /index.php/Admin/AuthManager/gym/group_name/%E6%B5%8B%E8%AF%95%E7%94%A8%E6%88%B7/group_id/2.html
+ERR: 非法操作:gym
+
+[ 2016-08-29T14:54:54+08:00 ] 127.0.0.1 /index.php/Admin/AuthManager/category/group_name/%E6%B5%8B%E8%AF%95%E7%94%A8%E6%88%B7/group_id/2.html
+ERR: Think\Model:getTree方法不存在！
+
+[ 2016-08-29T14:56:02+08:00 ] 127.0.0.1 /index.php/Admin/AuthManager/category/group_name/%E6%B5%8B%E8%AF%95%E7%94%A8%E6%88%B7/group_id/2.html
+ERR: Think\Model:getTree方法不存在！
+
+[ 2016-08-29T14:56:03+08:00 ] 127.0.0.1 /index.php/Admin/AuthManager/category/group_name/%E6%B5%8B%E8%AF%95%E7%94%A8%E6%88%B7/group_id/2.html
+ERR: Think\Model:getTree方法不存在！
+
+[ 2016-08-29T14:56:27+08:00 ] 127.0.0.1 /index.php/Admin/AuthManager/category/group_name/%E6%B5%8B%E8%AF%95%E7%94%A8%E6%88%B7/group_id/2.html
+ERR: Think\Model:getTree方法不存在！
+
+[ 2016-08-29T14:56:28+08:00 ] 127.0.0.1 /index.php/Admin/AuthManager/category/group_name/%E6%B5%8B%E8%AF%95%E7%94%A8%E6%88%B7/group_id/2.html
+ERR: Think\Model:getTree方法不存在！
+
+[ 2016-08-29T14:56:28+08:00 ] 127.0.0.1 /index.php/Admin/AuthManager/category/group_name/%E6%B5%8B%E8%AF%95%E7%94%A8%E6%88%B7/group_id/2.html
+ERR: Think\Model:getTree方法不存在！
+
+[ 2016-08-29T14:56:28+08:00 ] 127.0.0.1 /index.php/Admin/AuthManager/category/group_name/%E6%B5%8B%E8%AF%95%E7%94%A8%E6%88%B7/group_id/2.html
+ERR: Think\Model:getTree方法不存在！
+
+[ 2016-08-29T14:56:29+08:00 ] 127.0.0.1 /index.php/Admin/AuthManager/category/group_name/%E6%B5%8B%E8%AF%95%E7%94%A8%E6%88%B7/group_id/2.html
+ERR: Think\Model:getTree方法不存在！
+
+[ 2016-08-29T14:56:29+08:00 ] 127.0.0.1 /index.php/Admin/AuthManager/category/group_name/%E6%B5%8B%E8%AF%95%E7%94%A8%E6%88%B7/group_id/2.html
+ERR: Think\Model:getTree方法不存在！
+
+[ 2016-08-29T14:57:13+08:00 ] 127.0.0.1 /index.php/Admin/AuthManager/category/group_name/%E6%B5%8B%E8%AF%95%E7%94%A8%E6%88%B7/group_id/2.html
+ERR: Think\Model:getList方法不存在！
+
+[ 2016-08-29T14:57:13+08:00 ] 127.0.0.1 /index.php/Admin/AuthManager/category/group_name/%E6%B5%8B%E8%AF%95%E7%94%A8%E6%88%B7/group_id/2.html
+ERR: Think\Model:getList方法不存在！
+
+[ 2016-08-29T14:57:13+08:00 ] 127.0.0.1 /index.php/Admin/AuthManager/category/group_name/%E6%B5%8B%E8%AF%95%E7%94%A8%E6%88%B7/group_id/2.html
+ERR: Think\Model:getList方法不存在！
+
+[ 2016-08-29T14:57:14+08:00 ] 127.0.0.1 /index.php/Admin/AuthManager/category/group_name/%E6%B5%8B%E8%AF%95%E7%94%A8%E6%88%B7/group_id/2.html
+ERR: Think\Model:getList方法不存在！
+
+[ 2016-08-29T14:57:14+08:00 ] 127.0.0.1 /index.php/Admin/AuthManager/category/group_name/%E6%B5%8B%E8%AF%95%E7%94%A8%E6%88%B7/group_id/2.html
+ERR: Think\Model:getList方法不存在！
+
+[ 2016-08-29T17:28:41+08:00 ] 127.0.0.1 /index.php/Admin/AuthManager/category/group_name/%E6%B5%8B%E8%AF%95%E7%94%A8%E6%88%B7/group_id/2.html
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 1
+ [ SQL语句 ] : SELECT `id`,`gid`,`name` FROM `sp_sport_hall` WHERE ( gid= ) 
+
+[ 2016-08-29T17:28:43+08:00 ] 127.0.0.1 /index.php/Admin/AuthManager/category/group_name/%E6%B5%8B%E8%AF%95%E7%94%A8%E6%88%B7/group_id/2.html
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 1
+ [ SQL语句 ] : SELECT `id`,`gid`,`name` FROM `sp_sport_hall` WHERE ( gid= ) 
+
+[ 2016-08-29T17:28:45+08:00 ] 127.0.0.1 /index.php/Admin/AuthManager/category/group_name/%E6%B5%8B%E8%AF%95%E7%94%A8%E6%88%B7/group_id/2.html
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 1
+ [ SQL语句 ] : SELECT `id`,`gid`,`name` FROM `sp_sport_hall` WHERE ( gid= ) 
+
+[ 2016-08-29T17:28:48+08:00 ] 127.0.0.1 /index.php/Admin/AuthManager/category/group_name/%E6%B5%8B%E8%AF%95%E7%94%A8%E6%88%B7/group_id/2.html
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 1
+ [ SQL语句 ] : SELECT `id`,`gid`,`name` FROM `sp_sport_hall` WHERE ( gid= ) 
+
+[ 2016-08-29T17:29:07+08:00 ] 127.0.0.1 /index.php/Admin/AuthManager/category/group_name/%E6%B5%8B%E8%AF%95%E7%94%A8%E6%88%B7/group_id/2.html
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 1
+ [ SQL语句 ] : SELECT `id`,`gid`,`name` FROM `sp_sport_hall` WHERE ( gid= ) 
+
+[ 2016-08-29T17:29:09+08:00 ] 127.0.0.1 /index.php/Admin/AuthManager/category/group_name/%E6%B5%8B%E8%AF%95%E7%94%A8%E6%88%B7/group_id/2.html
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 1
+ [ SQL语句 ] : SELECT `id`,`gid`,`name` FROM `sp_sport_hall` WHERE ( gid= ) 
+
+[ 2016-08-29T17:29:11+08:00 ] 127.0.0.1 /index.php/Admin/AuthManager/category/group_name/%E6%B5%8B%E8%AF%95%E7%94%A8%E6%88%B7/group_id/2.html
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 1
+ [ SQL语句 ] : SELECT `id`,`gid`,`name` FROM `sp_sport_hall` WHERE ( gid= ) 
+
+[ 2016-08-29T17:33:29+08:00 ] 127.0.0.1 /index.php/Admin/AuthManager/category/group_name/%E6%B5%8B%E8%AF%95%E7%94%A8%E6%88%B7/group_id/2.html
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 1
+ [ SQL语句 ] : SELECT `id`,`gid`,`name` FROM `sp_sport_hall` WHERE ( gid= ) 
+
+[ 2016-08-29T17:33:31+08:00 ] 127.0.0.1 /index.php/Admin/AuthManager/category/group_name/%E6%B5%8B%E8%AF%95%E7%94%A8%E6%88%B7/group_id/2.html
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 1
+ [ SQL语句 ] : SELECT `id`,`gid`,`name` FROM `sp_sport_hall` WHERE ( gid= ) 
+
+[ 2016-08-29T17:33:37+08:00 ] 127.0.0.1 /index.php/Admin/AuthManager/category/group_name/%E6%B5%8B%E8%AF%95%E7%94%A8%E6%88%B7/group_id/2.html
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 1
+ [ SQL语句 ] : SELECT `id`,`gid`,`name` FROM `sp_sport_hall` WHERE ( gid= ) 
+
+[ 2016-08-29T17:33:42+08:00 ] 127.0.0.1 /index.php/Admin/AuthManager/category/group_name/%E6%B5%8B%E8%AF%95%E7%94%A8%E6%88%B7/group_id/2.html
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 1
+ [ SQL语句 ] : SELECT `id`,`gid`,`name` FROM `sp_sport_hall` WHERE ( gid= ) 
+
+[ 2016-08-29T17:33:43+08:00 ] 127.0.0.1 /index.php/Admin/AuthManager/category/group_name/%E6%B5%8B%E8%AF%95%E7%94%A8%E6%88%B7/group_id/2.html
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 1
+ [ SQL语句 ] : SELECT `id`,`gid`,`name` FROM `sp_sport_hall` WHERE ( gid= ) 
+

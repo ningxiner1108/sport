@@ -85,38 +85,154 @@
             
 
             
-<div class="tab-wrap">
-    <ul class="tab-nav nav">
-        <li><a href="<?php echo U('AuthManager/access',array('group_name'=>I('group_name') ,'group_id'=> I('group_id')));?>">访问授权</a></li>
-        <li class="current"><a href="javascript:;">场馆授权</a></li>
-		<li><a href="<?php echo U('AuthManager/user',array('group_name'=>I('group_name') ,'group_id'=> I('group_id')));?>">成员授权</a></li>
-	    <li class="fr">
-		    <select name="group">
-			    <?php if(is_array($auth_group)): $i = 0; $__LIST__ = $auth_group;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><option value="<?php echo U('AuthManager/category',array('group_id'=>$vo['id'],'group_name'=>$vo['title']));?>" <?php if(($vo['id']) == $this_group['id']): ?>selected<?php endif; ?> ><?php echo ($vo["title"]); ?></option><?php endforeach; endif; else: echo "" ;endif; ?>
-		    </select>
-	    </li>
-    </ul>
-    <!-- 表格列表 -->
-    <div class="tb-unit posr">
-        <form class="save-category" action="<?php echo U('AuthManager/addToCategory');?>" method="post" enctype="application/x-www-form-urlencoded">
-            <input type="hidden" name="group_id" value="<?php echo I('group_id');?>">
-            <div class="category auth-category">
-                <div class="hd cf">
-                    <div class="fold">折叠</div>
-                    <div class="order">选择</div>
-                    <div class="name">栏目名称</div>
-                </div>
-                <?php echo R('AuthManager/tree', array($group_list));?>
-            </div>
-
-            <div class="tb-unit-bar">
-                <button class="btn submit-btn ajax-post" type="submit" target-form="save-category">确 定</button>
-                <button class="btn btn-return" onclick="javascript:history.back(-1);return false;">返 回</button>
-            </div>
-        </form>
+  <!--<script src="jquery.js"></script>-->
+  <script type="text/javascript" src="/Public/static/uploadify/jquery.uploadify.min.js"></script>
+  <script src="/Public/Admin/js/threeSelect.js"></script>
+    <div class="main-title">
+        <h2>编辑会员</h2>
     </div>
-</div>
-<!-- /表格列表 -->
+    <form action="<?php echo U(Sport/guestTicketEdit);?>" method="post" class="form-horizontal">
+        <div class="form-item">
+            <label class="item-label">用户昵称 </label>
+            <div class="controls">
+            <label class="input-large">
+             <input type="text" name="nickname" class="text input-large" value="<?php echo ($order["nickname"]); ?>" readonly />
+            </label>				
+      </div>
+       <div class="form-item">
+            <label class="item-label">微信openid </label>
+            <div class="controls">
+            <label class="input-large">
+             <input type="text" name="openid" class="text input-large" value="<?php echo ($order["openid"]); ?>" readonly />
+            </label>				
+      </div>  
+       <div class="form-item">
+            <label class="item-label">用户昵称 </label>
+            <div class="controls">
+            <label class="input-large">
+             <input type="text" name="nickname" class="text input-large" value="<?php echo ($order["nickname"]); ?>" readonly />
+            </label>				
+      </div>
+        <div class="form-item">
+            <label class="item-label">真实姓名 </label>
+            <div class="controls">
+            <label class="input-large">
+             <input type="text" name="realname" class="text input-large" value="<?php echo ($order["realname"]); ?>" readonly />
+            </label>				
+      </div>     
+        <div class="form-item">
+            <label class="item-label">手机号码 </label>
+            <div class="controls">
+            <label class="input-large">
+             <input type="text" name="phone" class="text input-large" value="<?php echo ($order["phone"]); ?>" readonly />
+            </label>				
+      </div>      
+       <div class="form-item">
+            <label class="item-label">账户余额 </label>
+            <div class="controls">
+            <label class="input-large">
+             <input type="text" name="phone" class="text input-large" value="<?php echo ($order["phone"]); ?>" readonly />
+            </label>				
+      </div> 
+         <div class="form-item">
+            <label class="item-label">账户余额 </label>
+            <div class="controls">
+            <label class="input-large">
+             <input type="text" name="balance" class="text input-large" value="<?php echo ($order["balance"]); ?>" readonly />
+            </label>				
+      </div>  
+        <div class="form-item">
+            <label class="item-label">积分 </label>
+            <div class="controls">
+            <label class="input-large">
+             <input type="text" name="score" class="text input-large" value="<?php echo ($order["score"]); ?>" readonly />
+            </label>				
+      </div>
+        
+       <div class="form-item">
+            <label class="item-label">性别 </label>
+            <div class="controls">
+            <label class="input-large">
+             <input type="text" name="title" class="text input-large" value="<?php echo ($order["title"]); ?>"  />
+            </label>				
+      </div>
+      
+       <div class="form-item">
+            <label class="item-label">生日 </label>
+            <div class="controls">
+            <label class="input-large">
+             <input type="text" name="amount" class="text input-large" value="<?php echo ($order["amount"]); ?>"  />
+            </label>				
+      </div>
+            
+       <div class="form-item">
+            <label class="item-label">绑定的车辆ID列表 </label>
+            <div class="controls">
+            <label class="input-large">
+             <input type="text" name="spaceinfo" class="text input-large" value="<?php echo ($order["spaceinfo"]); ?>"  />
+            </label>				
+      </div>                 
+      <div class="form-item">
+            <label class="item-label">邮箱</label>
+            <div class="controls">
+            <label class="input-large">
+             <input type="text" name="amount" class="text input-large" value="<?php echo ($order["yearinfo"]); ?>年<?php echo ($order["dateinfo"]); ?>"  />
+            </label>				
+      </div>   
+        
+         <div class="form-item">
+            <label class="item-label">注册时间 </label>
+            <div class="controls">
+            <label class="input-large">
+             <input type="text" name="timeinfo" class="text input-large" value="<?php echo ($order["timeinfo"]); ?>"  />
+            </label>				
+      </div>
+        
+         <div class="form-item">
+            <label class="item-label">上次登录时间 </label>
+            <div class="controls">
+            <label class="input-large">
+             <input type="text" name="placeinfo" class="text input-large" value="<?php echo ($order["placeinfo"]); ?>"  />
+            </label>				
+      </div>     
+         <div class="form-item">
+            <label class="item-label">上次登录IP </label>
+            <div class="controls">
+            <label class="input-large">
+             <input type="text" name="placeinfo" class="text input-large" value="<?php echo ($order["placeinfo"]); ?>"  />
+            </label>				
+      </div>     
+     <div class="form-item">
+            <label class="item-label">状态 </label>
+            <div class="controls">
+            <label class="input-large">
+             <input type="text" name="hourinfo" class="text input-large" value="<?php echo ($order["hourinfo"]); ?>"  />
+            </label>				
+      </div>       
+      <div class="form-item">
+            <label class="item-label">是否删除<span class="check-tips"></span></label>
+            <div class="controls">
+                 <select name='isdel'>
+                     <option value="0"<?php if(0 == $order['isdel']): ?>selected<?php endif; ?>>否</option>
+                     <option value="1" <?php if(1 == $order['isdel']): ?>selected<?php endif; ?>>是</option>
+                </select>
+            </div>
+        </div>  
+       <div class="form-item">
+            <label class="item-label">备注<span class="check-tips"></span></label>
+            <div class="controls">
+                 <select name='isendorse'>
+                     <option value="0"<?php if(0 == $order['isendorse']): ?>selected<?php endif; ?>>否</option>
+                     <option value="1" <?php if(1 == $order['isendorse']): ?>selected<?php endif; ?>>是</option>
+                </select>
+            </div>
+        </div> 
+             
+      <div class="form-item">
+            <button class="btn submit-btn ajax-post" id="submit" type="submit" target-form="form-horizontal">确 定</button>
+            <button class="btn btn-return" onclick="javascript:history.back(-1);return false;">返 回</button>
+        </div>
+    </form>
 
         </div>
         <div class="cont-ft">
@@ -211,35 +327,47 @@
         }();
     </script>
     
+<link href="/Public/static/datetimepicker/css/datetimepicker.css" rel="stylesheet" type="text/css">
+<?php if(C('COLOR_STYLE')=='blue_color') echo '<link href="/Public/static/datetimepicker/css/datetimepicker_blue.css" rel="stylesheet" type="text/css">'; ?>
+<link href="/Public/static/datetimepicker/css/dropdown.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="/Public/static/datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+<script type="text/javascript" src="/Public/static/datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>
 <script type="text/javascript">
-    +function($){
-        /* 分类展开收起 */
-        $(".category dd").prev().find(".fold i").addClass("icon-unfold")
-            .click(function(){
-                var self = $(this);
-                if(self.hasClass("icon-unfold")){
-                    self.closest("dt").next().slideUp("fast", function(){
-                        self.removeClass("icon-unfold").addClass("icon-fold");
-                    });
-                } else {
-                    self.closest("dt").next().slideDown("fast", function(){
-                        self.removeClass("icon-fold").addClass("icon-unfold");
-                    });
-                }
-            });
+  //导航高亮
+   highlight_subnav('<?php echo U('User/index');?>');
+$(function(){
+    $('.time').datetimepicker({
+        format: 'yyyy-mm-dd',
+        language:"zh-CN",
+        minView:2,
+        autoclose:true
+    });
+    showTab();
 
-        var auth_groups = [<?php echo ($authed_group); ?>];
-        $('.cate_id').each(function(){
-            if( $.inArray( parseInt(this.value,10),auth_groups )>-1 ){
-                $(this).prop('checked',true);
-            }
-        });
-	    $('select[name=group]').change(function(){
-		    location.href = this.value;
-	    });
-    }(jQuery);
-    //导航高亮
-    highlight_subnav('<?php echo U('AuthManager/index');?>');
+});
+ $('#timetype').bind('change', function(){ 
+    var val = $(this).val(); 
+    console.log(val);
+    switch(val){ 
+      case '0': $("#week").hide();$('#date').hide();$("#date_define").hide(); break; 
+      case '1': $('#week').show(); $('#date').hide();$("#date_define").hide(); break; 
+      case '2': $('#date').show(); $('#week').hide();$("#date_define").hide(); break;
+      case '3': $("#date_define").show();$('#date').hide(); $('#week').hide(); break;  
+      } 
+    });
+    
+   $('#timezone_e').bind('change', function(){ 
+    var val = $(this).val(); 
+    console.log(val);
+    switch(val){ 
+      case '0': $("#week").hide();$('#date').hide();$("#date_define").hide(); break; 
+      case '1': $('#week').show(); $('#date').hide();$("#date_define").hide(); break; 
+      case '2': $('#date').show(); $('#week').hide();$("#date_define").hide(); break;
+      case '3': $("#date_define").show();$('#date').hide(); $('#week').hide(); break;  
+      } 
+    });  
+    
+    
 </script>
 
 </body>

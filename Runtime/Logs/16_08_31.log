@@ -1,0 +1,106 @@
+[ 2016-08-31T09:02:48+08:00 ] 127.0.0.1 /index.php/Admin/Sport/gym.html
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') LIMIT 1' at line 1
+ [ SQL语句 ] : SELECT `sport_rule` FROM `sp_auth_group` WHERE ( id= ) LIMIT 1  
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') )' at line 1
+ [ SQL语句 ] : SELECT * FROM `sp_gym` WHERE ( `id` IN () ) 
+
+[ 2016-08-31T09:02:49+08:00 ] 127.0.0.1 /index.php/Admin/Sport/gym.html
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') LIMIT 1' at line 1
+ [ SQL语句 ] : SELECT `sport_rule` FROM `sp_auth_group` WHERE ( id= ) LIMIT 1  
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') )' at line 1
+ [ SQL语句 ] : SELECT * FROM `sp_gym` WHERE ( `id` IN () ) 
+
+[ 2016-08-31T09:02:49+08:00 ] 127.0.0.1 /index.php/Admin/Sport/hall.html
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') LIMIT 1' at line 1
+ [ SQL语句 ] : SELECT `sport_rule` FROM `sp_auth_group` WHERE ( id= ) LIMIT 1  
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') )' at line 1
+ [ SQL语句 ] : SELECT * FROM `sp_sport_hall` WHERE ( `id` IN () ) 
+
+[ 2016-08-31T09:02:50+08:00 ] 127.0.0.1 /index.php/Admin/Sport/spaceType.html
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') LIMIT 1' at line 1
+ [ SQL语句 ] : SELECT `sport_rule` FROM `sp_auth_group` WHERE ( id= ) LIMIT 1  
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') )' at line 1
+ [ SQL语句 ] : SELECT * FROM `sp_space_type` WHERE ( `id` IN () ) 
+
+[ 2016-08-31T09:02:51+08:00 ] 127.0.0.1 /index.php/Admin/Sport/gym.html
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') LIMIT 1' at line 1
+ [ SQL语句 ] : SELECT `sport_rule` FROM `sp_auth_group` WHERE ( id= ) LIMIT 1  
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') )' at line 1
+ [ SQL语句 ] : SELECT * FROM `sp_gym` WHERE ( `id` IN () ) 
+
+[ 2016-08-31T09:02:52+08:00 ] 127.0.0.1 /index.php/Admin/Sport/hall.html
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') LIMIT 1' at line 1
+ [ SQL语句 ] : SELECT `sport_rule` FROM `sp_auth_group` WHERE ( id= ) LIMIT 1  
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') )' at line 1
+ [ SQL语句 ] : SELECT * FROM `sp_sport_hall` WHERE ( `id` IN () ) 
+
+[ 2016-08-31T09:02:55+08:00 ] 127.0.0.1 /index.php/Admin/Sport/gym.html
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') LIMIT 1' at line 1
+ [ SQL语句 ] : SELECT `sport_rule` FROM `sp_auth_group` WHERE ( id= ) LIMIT 1  
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') )' at line 1
+ [ SQL语句 ] : SELECT * FROM `sp_gym` WHERE ( `id` IN () ) 
+
+[ 2016-08-31T09:03:22+08:00 ] 127.0.0.1 /index.php/Admin/Sport/gym.html
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') LIMIT 1' at line 1
+ [ SQL语句 ] : SELECT `sport_rule` FROM `sp_auth_group` WHERE ( id= ) LIMIT 1  
+
+[ 2016-08-31T09:03:23+08:00 ] 127.0.0.1 /index.php/Admin/Sport/gym.html
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') LIMIT 1' at line 1
+ [ SQL语句 ] : SELECT `sport_rule` FROM `sp_auth_group` WHERE ( id= ) LIMIT 1  
+
+[ 2016-08-31T09:03:24+08:00 ] 127.0.0.1 /index.php/Admin/Sport/gym.html
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') LIMIT 1' at line 1
+ [ SQL语句 ] : SELECT `sport_rule` FROM `sp_auth_group` WHERE ( id= ) LIMIT 1  
+
+[ 2016-08-31T09:03:24+08:00 ] 127.0.0.1 /index.php/Admin/Sport/gym.html
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') LIMIT 1' at line 1
+ [ SQL语句 ] : SELECT `sport_rule` FROM `sp_auth_group` WHERE ( id= ) LIMIT 1  
+
+[ 2016-08-31T09:03:24+08:00 ] 127.0.0.1 /index.php/Admin/Sport/gym.html
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') LIMIT 1' at line 1
+ [ SQL语句 ] : SELECT `sport_rule` FROM `sp_auth_group` WHERE ( id= ) LIMIT 1  
+
+[ 2016-08-31T09:03:24+08:00 ] 127.0.0.1 /index.php/Admin/Sport/gym.html
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') LIMIT 1' at line 1
+ [ SQL语句 ] : SELECT `sport_rule` FROM `sp_auth_group` WHERE ( id= ) LIMIT 1  
+
+[ 2016-08-31T09:03:42+08:00 ] 127.0.0.1 /index.php/Admin/Sport/gym.html
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') LIMIT 1' at line 1
+ [ SQL语句 ] : SELECT `sport_rule` FROM `sp_auth_group` WHERE ( id= ) LIMIT 1  
+
+[ 2016-08-31T09:03:43+08:00 ] 127.0.0.1 /index.php/Admin/Sport/gym.html
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') LIMIT 1' at line 1
+ [ SQL语句 ] : SELECT `sport_rule` FROM `sp_auth_group` WHERE ( id= ) LIMIT 1  
+
+[ 2016-08-31T09:03:43+08:00 ] 127.0.0.1 /index.php/Admin/Sport/gym.html
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') LIMIT 1' at line 1
+ [ SQL语句 ] : SELECT `sport_rule` FROM `sp_auth_group` WHERE ( id= ) LIMIT 1  
+
+[ 2016-08-31T09:03:43+08:00 ] 127.0.0.1 /index.php/Admin/Sport/gym.html
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') LIMIT 1' at line 1
+ [ SQL语句 ] : SELECT `sport_rule` FROM `sp_auth_group` WHERE ( id= ) LIMIT 1  
+
+[ 2016-08-31T09:03:43+08:00 ] 127.0.0.1 /index.php/Admin/Sport/gym.html
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') LIMIT 1' at line 1
+ [ SQL语句 ] : SELECT `sport_rule` FROM `sp_auth_group` WHERE ( id= ) LIMIT 1  
+
+[ 2016-08-31T09:03:44+08:00 ] 127.0.0.1 /index.php/Admin/Sport/gym.html
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') LIMIT 1' at line 1
+ [ SQL语句 ] : SELECT `sport_rule` FROM `sp_auth_group` WHERE ( id= ) LIMIT 1  
+
+[ 2016-08-31T09:03:45+08:00 ] 127.0.0.1 /index.php/Admin/Sport/gym.html
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') LIMIT 1' at line 1
+ [ SQL语句 ] : SELECT `sport_rule` FROM `sp_auth_group` WHERE ( id= ) LIMIT 1  
+
+[ 2016-08-31T09:07:00+08:00 ] 127.0.0.1 /index.php/Admin/Sport/gym.html
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') LIMIT 1' at line 1
+ [ SQL语句 ] : SELECT `sport_rule` FROM `sp_auth_group` WHERE ( id= ) LIMIT 1  
+
+[ 2016-08-31T09:19:34+08:00 ] 127.0.0.1 /index.php/Admin/Sport/gym.html
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') LIMIT 1' at line 1
+ [ SQL语句 ] : SELECT `sport_rule` FROM `sp_auth_group` WHERE ( id= ) LIMIT 1  
+
+[ 2016-08-31T09:29:51+08:00 ] 127.0.0.1 /index.php/Admin/Sport/hall.html
+ERR: 1064:You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ') )' at line 1
+ [ SQL语句 ] : SELECT * FROM `sp_sport_hall` WHERE ( `id` IN () ) 
+

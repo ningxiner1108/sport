@@ -91,9 +91,9 @@
 	</div>
 	<div class="cf">
 		<div class="fl">
-            <a class="btn" href="<?php echo U('Sport/hallAdd');?>">新 增</a>
-            <button class="btn ajax-post confirm" url="<?php echo U('Sport/hallDelete');?>" target-form="ids">删 除</button>
-        </div>
+              <?php if($hidden['add'] == null): ?><a class="btn" href="<?php echo U('Sport/hallAdd');?>">新 增</a><?php endif; ?>
+               <?php if($hidden['delete'] == null): ?><button class="btn ajax-post confirm" url="<?php echo U('Sport/hallDelete');?>" target-form="ids">删 除</button><?php endif; ?>
+                </div>
 
         <!-- 高级搜索 -->
 		<div class="search-form fr cf">
@@ -125,8 +125,8 @@
 			<td><?php echo ($vo["icon"]); ?></td>
 			
 			<td>
-			 <a href="<?php echo U('Sport/HallEdit?id='.$vo['id']);?>" class="get">编辑</a>
-                </td>
+                             <?php if($hidden['edit'] == null): ?><a href="<?php echo U('Sport/HallEdit?id='.$vo['id']);?>" class="get">编辑</a><?php endif; ?>
+                             </td>
 		</tr><?php endforeach; endif; else: echo "" ;endif; ?>
 		<?php else: ?>
 		<td colspan="9" class="text-center"> aOh! 暂时还没有内容! </td><?php endif; ?>

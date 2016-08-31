@@ -87,13 +87,12 @@
             
 	<!-- 标题栏 -->
 	<div class="main-title">
-		<h2>体育馆列表</h2>
+            <h2>会员列表</h2>
 	</div>
 	<div class="cf">
-          <div class="fl">
-           <?php if($hidden['add'] == null): ?><a class="btn" href="<?php echo U('Sport/gymAdd');?>">新 增</a><?php endif; ?>
-            <?php if($hidden['delete'] == null): ?><button class="btn ajax-post confirm" url="<?php echo U('Sport/gymDelete');?>" target-form="ids">删 除</button><?php endif; ?>
-          </div>
+	<div class="fl">
+           <button class="btn ajax-post confirm" url="<?php echo U('Sport/placeDelete');?>" target-form="ids">删 除</button>
+        </div>
 
         <!-- 高级搜索 -->
 		<div class="search-form fr cf">
@@ -109,29 +108,25 @@
     <thead>
         <tr>
 		<th class="row-selected row-selected"><input class="check-all" type="checkbox"/></th>
-		<th class="">名称</th>
-		<th class="">省份</th>
-		<th class="">市区</th>
-		<th class="">区县</th>
-		<th class="">具体地址</th>
-		<th class="">类型</th>
+		<th class="">会员ID</th>
+                <th class="">用户昵称</th>
+                <th class="">手机号</th>
+		<th class="">卡号</th>
+		<th class="">账户余额(￥)</th>
 		<th class="">操作</th>
 		</tr>
     </thead>
     <tbody>
 		<?php if(!empty($_list)): if(is_array($_list)): $i = 0; $__LIST__ = $_list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><tr>
             <td><input class="ids" type="checkbox" name="id[]" value="<?php echo ($vo["id"]); ?>" /></td>
-			<td><?php echo ($vo["name"]); ?> </td>
-			<td><?php echo ($vo["province"]); ?></td>
-			<td><?php echo ($vo["city"]); ?></td>
-			<td><?php echo ($vo["area"]); ?></td>
-			<td><span><?php echo ($vo["address"]); ?></span></td>
-            <td>
-			     <?php echo ($vo["typename"]); ?>
-            </td>
+			<td><?php echo ($vo["id"]); ?></td>
+                        <td><?php echo ($vo["nickname"]); ?> </td>
+			<td><?php echo ($vo["phone"]); ?></td>
+                        <td><?php echo ($vo["number"]); ?></td>
+                        <td><?php echo ($vo["balance"]); ?></td>
 			<td>
-                          <?php if($hidden['edit'] == null): ?><a href="<?php echo U('Sport/gymEdit?id='.$vo['id']);?>" class="get">编辑</a><?php endif; ?>
-                            </td>
+                          <?php if($hidden['edit'] == null): ?><a href="<?php echo U('Member/userinfoEdit?id='.$vo['id']);?>" class="get">详情</a><?php endif; ?>
+            </td>
 		</tr><?php endforeach; endif; else: echo "" ;endif; ?>
 		<?php else: ?>
 		<td colspan="9" class="text-center"> aOh! 暂时还没有内容! </td><?php endif; ?>

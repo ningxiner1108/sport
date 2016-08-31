@@ -623,6 +623,15 @@ label.textarea ~ .check-tips {
 	background-position: 0 -60px;
 }
 
+/* 四级分类 */
+.category > dl > dd > dl > dd > dl > dd > dl > dt  .tab-sign {
+	width: 150px;
+	background-position: 0 -60px;
+}
+.category > dl > dd > dl > dd > dl > dd > dl:last-child > dt .tab-sign {
+	background-position: 0 -90px;
+}
+
 .category > dl > dd > dl:last-child > dd > dl > dt .tab-sign {
 	background-position: 0 -90px;
 }

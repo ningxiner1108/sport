@@ -6,9 +6,13 @@
 		<h2>片区列表</h2>
 	</div>
 	<div class="cf">
-		<div class="fl">
-            <a class="btn" href="{:U('Sport/placeAdd')}">新 增</a>
-            <button class="btn ajax-post confirm" url="{:U('Sport/placeDelete')}" target-form="ids">删 除</button>
+	<div class="fl">
+             <if condition="$hidden['add'] eq null"> 
+                <a class="btn" href="{:U('Sport/placeAdd')}">新 增</a>
+           </if>
+             <if condition="$hidden['delete'] eq null"> 
+                <button class="btn ajax-post confirm" url="{:U('Sport/placeDelete')}" target-form="ids">删 除</button>
+             </if>
         </div>
 
         <!-- 高级搜索 -->
@@ -42,7 +46,9 @@
 			<td>{$vo.hallname.name} </td>
 			<td>{$vo.spacename.name}</td>
 			<td>
+                          <if condition="$hidden['edit'] eq null"> 
 			   <a href="{:U('Sport/placeEdit?id='.$vo['id'])}" class="get">编辑</a>
+                          </if>
             </td>
 		</tr>
 		</volist>

@@ -54,4 +54,26 @@ class GymModel extends Model{
         $data = D("SportType")->find($id);
         return  $data['name'];
     }
+    
+    function getTree(){
+        $gym = $this->field('id,name')->order('sort desc')->select();
+        foreach($gym as $k=>&$v){
+            $hall[$k] = D('SportHall')->where('gid=' . $v['id'])->field("id,gid,name")->select();
+            $gym[$k]['_'] = $hall[$k];
+            foreach($hall[$k] as $kk=>&$vv){
+                $map['shid'] = $vv['id'];
+                $map['gid'] = $vv['gid'];
+                $spaceType[$kk] = D('spaceType')->where($map)->field("id,gid,shid,name")->select();
+                $gym[$k]['_'][$kk]['_'] = $spaceType[$kk];
+                foreach($spaceType[$kk] as $kkk=>&$vvv){
+                    $map2['shid'] = $vvv['shid'];
+                    $map2['gid'] = $vvv['gid'];
+                    $map2['spaceid'] = $vvv['id'];
+                    $place[$kkk] = D('Place')->where($map2)->field("id,gid,shid,spaceid,name")->select();
+                    $gym[$k]['_'][$kk]['_'][$kkk]['_'] = $place[$kkk];
+                }
+           }
+        }
+        return $gym;
+    }
 }

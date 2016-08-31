@@ -40,13 +40,26 @@ class SportController extends AdminController {
 //    }
 
     function gym() {
-        $data = array();
-        $list = $this->lists('Gym');
+        $path = array('add' => 'admin/sport/gymAdd', 'delete' => 'admin/sport/gymDelete', 'edit' => 'admin/sport/gymEdit');
+        foreach ($path as $k => $v) {
+            if (!$this->checkRule($v, array('in', '1,2'))) {
+                $hidden[$k] = $v;
+            }
+        }
+        $rule = D('AuthGroup')->getSportRule();
+        if(!empty($rule)){
+             $ids = $rule['gymid'];
+             $condition['id'] = array('in', $ids);
+        }else{
+            $condition = $rule;
+        }
+        $list   = $this->lists('Gym', $condition);
         int_to_string($list);
         $gym = new \Mobile\Model\GymModel();
         foreach ($list as &$v) {
             $v['typename'] = $gym->getTypeName($v['type']);
         }
+        $this->assign('hidden', $hidden);
         $this->assign('_list', $list);
         $this->display();
     }
@@ -120,6 +133,7 @@ class SportController extends AdminController {
     }
 
     function placeAdd() {
+//        print_r($hidden);die;
         if (IS_POST) {
             $place = new \Mobile\Model\PlaceModel();
             if (!$place->create()) {
@@ -472,7 +486,7 @@ class SportController extends AdminController {
             if (!$type->create()) {
                 $this->error('修改散票信息失败！');
             } else {
-               // print_r($_POST);die;
+                // print_r($_POST);die;
                 $hid = I("id");
                 $res = $type->where('id=' . $hid)->save();
                 // print_r(M()->getLastSql());die;
@@ -486,9 +500,9 @@ class SportController extends AdminController {
             $data = range(1, 31);
             $this->getSelectTime();
             $this->assign("data", $data);
-            if($timetype=3){
-                $date_s = date('Y-m-d',$guestTicket['date_s']);
-                $date_e = date('Y-m-d',$guestTicket['date_e']);
+            if ($timetype = 3) {
+                $date_s = date('Y-m-d', $guestTicket['date_s']);
+                $date_e = date('Y-m-d', $guestTicket['date_e']);
                 $this->assign('date_s', $date_s);
                 $this->assign('date_e', $date_e);
             }
@@ -550,25 +564,53 @@ class SportController extends AdminController {
     }
 
     function hall() {
-        $list = $this->lists('SportHall');
+        $path = array('add' => 'admin/sport/hallAdd', 'delete' => 'admin/sport/hallDelete', 'edit' => 'admin/sport/hallEdit');
+        foreach ($path as $k => $v) {
+            if (!$this->checkRule($v, array('in', '1,2'))) {
+                $hidden[$k] = $v;
+            }
+        }
+        $rule = D('AuthGroup')->getSportRule();
+        if(!empty($rule)){
+             $ids = $rule['shid'];
+             $condition['id'] = array('in', $ids);
+        }else{
+            $condition = $rule;
+        }
+        $list   = $this->lists('SportHall', $condition);
         int_to_string($list);
         $gym = new \Mobile\Model\SportHallModel();
         foreach ($list as &$v) {
             $v['gymname'] = $gym->getGymName($v['gid']);
             $v['typename'] = $gym->getTypeName($v['stid']);
         }
+        $this->assign('hidden', $hidden);
         $this->assign('_list', $list);
         $this->display();
     }
 
     function place() {
-        $list = $this->lists('Place');
+        $path = array('add' => 'admin/sport/placeAdd', 'delete' => 'admin/sport/placeDelete', 'edit' => 'admin/sport/placeEdit');
+        foreach ($path as $k => $v) {
+            if (!$this->checkRule($v, array('in', '1,2'))) {
+                $hidden[$k] = $v;
+            }
+        }
+        $rule = D('AuthGroup')->getSportRule();
+        if(!empty($rule)){
+             $ids = $rule['placeid'];
+             $condition['id'] = array('in', $ids);
+        }else{
+            $condition = $rule;
+        }
+        $list   = $this->lists('Place', $condition);
         int_to_string($list);
         foreach ($list as &$v) {
             $v['gymname'] = D("Gym")->field('name')->find($v['gid']);
             $v['hallname'] = D("SportHall")->field('name')->find($v['shid']);
             $v['spacename'] = D("SpaceType")->field('name')->find($v['spaceid']);
         }
+        $this->assign('hidden', $hidden);
         $this->assign('_list', $list);
         $this->display();
     }
@@ -611,13 +653,26 @@ class SportController extends AdminController {
     }
 
     function spaceType() {
-        $list = $this->lists('SpaceType');
+        $path = array('add' => 'admin/sport/spaceTypeAdd', 'delete' => 'admin/sport/spaceTypeDelete', 'edit' => 'admin/sport/spaceTypeEdit');
+        foreach ($path as $k => $v) {
+            if (!$this->checkRule($v, array('in', '1,2'))) {
+                $hidden[$k] = $v;
+            }
+        }
+        $rule = D('AuthGroup')->getSportRule();
+        if(!empty($rule)){
+             $ids = $rule['spaceid'];
+             $condition['id'] = array('in', $ids);
+        }else{
+            $condition = $rule;
+        }
+        $list   = $this->lists('SpaceType', $condition);
         int_to_string($list);
         foreach ($list as &$v) {
             $v['hallname'] = D("SportHall")->field('name')->find($v['shid']);
             $v['gymname'] = D("Gym")->field('name')->find($v['gid']);
         }
-//        print_r($list);die;
+        $this->assign('hidden', $hidden);
         $this->assign('_list', $list);
         $this->display();
     }
@@ -627,20 +682,20 @@ class SportController extends AdminController {
         $type = D('PriceConfig');
         $priceConfig = $type->find($id);
         if (IS_POST) {
-             if ($_POST['timetype'] == 3) {
-                    $_POST['date_s'] = strtotime(I('date_s_3'));
-                    $_POST['date_e'] = strtotime(I('date_e_3') . ' 23:59:59');
-                } elseif ($_POST['timetype'] == 0) {
-                    $_POST['date_s'] = 0;
-                    $_POST['date_e'] = 0;
-                } else {
-                    $_POST['date_s'] = $_POST['date_s_' . $_POST['timetype']];
-                    $_POST['date_e'] = $_POST['date_e_' . $_POST['timetype']];
-                }
-                $price_detail = array(
-                    array('timezone_s' => I('timezone_s_1'), 'timezone_e' => I('timezone_e_1'), 'price' => I('price1')),
-                    array('timezone_s' => I('timezone_s_2'), 'timezone_e' => I('timezone_e_2'), 'price' => I('price2')),
-                );
+            if ($_POST['timetype'] == 3) {
+                $_POST['date_s'] = strtotime(I('date_s_3'));
+                $_POST['date_e'] = strtotime(I('date_e_3') . ' 23:59:59');
+            } elseif ($_POST['timetype'] == 0) {
+                $_POST['date_s'] = 0;
+                $_POST['date_e'] = 0;
+            } else {
+                $_POST['date_s'] = $_POST['date_s_' . $_POST['timetype']];
+                $_POST['date_e'] = $_POST['date_e_' . $_POST['timetype']];
+            }
+            $price_detail = array(
+                array('timezone_s' => I('timezone_s_1'), 'timezone_e' => I('timezone_e_1'), 'price' => I('price1')),
+                array('timezone_s' => I('timezone_s_2'), 'timezone_e' => I('timezone_e_2'), 'price' => I('price2')),
+            );
             if (!$type->create()) {
                 $this->error('修改价格类型失败！');
             } else {
@@ -660,30 +715,30 @@ class SportController extends AdminController {
             $data = range(1, 31);
             $this->getSelectTime();
             $this->assign("data", $data);
-            if($timetype=3){
-                $date_s = date('Y-m-d',$priceConfig['date_s']);
-                $date_e = date('Y-m-d',$priceConfig['date_e']);
+            if ($timetype = 3) {
+                $date_s = date('Y-m-d', $priceConfig['date_s']);
+                $date_e = date('Y-m-d', $priceConfig['date_e']);
                 $this->assign('date_s', $date_s);
                 $this->assign('date_e', $date_e);
             }
 
             // print_r($priceConfig['price_detail']);die;
-            $detail  = json_decode($priceConfig['price_detail'],true);
+            $detail = json_decode($priceConfig['price_detail'], true);
             $detail_1 = $detail[0];
             $detail_2 = $detail[1];
             // print_r($detail_1['timezone_s']);die;
-             $this->assign('detail1', $detail_1);
-             $this->assign('detail2', $detail_2);
+            $this->assign('detail1', $detail_1);
+            $this->assign('detail2', $detail_2);
             $this->assign('priceConfig', $priceConfig);
             $this->display();
         }
     }
-    
-        function orderEdit() {
+
+    function orderEdit() {
         $id = I("id");
         $type = D('Order');
         $order = $type->find($id);
-        $paytime = date("Y-m-d H:i:s",$order['paytime']);
+        $paytime = date("Y-m-d H:i:s", $order['paytime']);
 //        print_r($paytime);die;
         if (IS_POST) {
             if (!$type->create()) {
@@ -797,6 +852,17 @@ class SportController extends AdminController {
         }
         $this->assign("showtime", $showtime);
         $this->assign("time", $time);
+    }
+
+//    通过体育馆id
+    function dataTree($gid) {
+        $gym = D('Gym')->field('id,name')->find($id);
+        $gym['hall'] = D('SportHall')->where('gid=' . $gid)->field("gid,id,name")->select();
+        foreach ($gym['hall'] as $k => $v) {
+            $map['shid'] = $v['id'];
+            $map['gid'] = $gid;
+            $gym['hall'][$k]['spaceType'] = D('SpaceType')->where($map)->field("gid,shid,id,name")->select();
+        }
     }
 
 }

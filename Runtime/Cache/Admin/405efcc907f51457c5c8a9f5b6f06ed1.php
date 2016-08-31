@@ -85,62 +85,38 @@
             
 
             
-	<!-- 标题栏 -->
 	<div class="main-title">
-		<h2>体育馆列表</h2>
+        <h2>用户组授权</h2>
 	</div>
-	<div class="cf">
-          <div class="fl">
-           <?php if($hidden['add'] == null): ?><a class="btn" href="<?php echo U('Sport/gymAdd');?>">新 增</a><?php endif; ?>
-            <?php if($hidden['delete'] == null): ?><button class="btn ajax-post confirm" url="<?php echo U('Sport/gymDelete');?>" target-form="ids">删 除</button><?php endif; ?>
-          </div>
 
-        <!-- 高级搜索 -->
-		<div class="search-form fr cf">
-			<div class="sleft">
-				<input type="text" name="nickname" class="search-input" value="<?php echo I('nickname');?>" placeholder="请输入用户昵称或者ID">
-				<a class="sch-btn" href="javascript:;" id="search" url="<?php echo U('index');?>"><i class="btn-search"></i></a>
-			</div>
-		</div>
+    <div id="auth_groups">
+        <form class="form-horizontal" action="<?php echo U('addToGroup');?>" method="post" enctype="application/x-www-form-urlencoded" >
+			<label class="item-label"><?php echo ($nickname); ?> 所属的用户组列表</label>
+            <?php if(is_array($auth_groups)): $i = 0; $__LIST__ = $auth_groups;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><label class="checkbox">
+                    <input class="auth_groups" type="checkbox" name="group_id[]" value="<?php echo ($vo["id"]); ?>"><?php echo ($vo["title"]); ?>
+                </label><?php endforeach; endif; else: echo "" ;endif; ?>
+            <input type="hidden" name="uid" value="<?php echo I('uid');?>">
+            <input type="hidden" name="batch" value="true">
+            <div style="margin-top: 10px;">
+                <button type="submit" class="btn submit-btn ajax-post" target-form="form-horizontal">确 定</button>
+                <button class="btn btn-return" onclick="javascript:history.back(-1);return false;">返 回</button>
+            </div>
+        </form>
     </div>
-    <!-- 数据列表 -->
-    <div class="data-table table-striped">
-	<table class="">
-    <thead>
-        <tr>
-		<th class="row-selected row-selected"><input class="check-all" type="checkbox"/></th>
-		<th class="">名称</th>
-		<th class="">省份</th>
-		<th class="">市区</th>
-		<th class="">区县</th>
-		<th class="">具体地址</th>
-		<th class="">类型</th>
-		<th class="">操作</th>
-		</tr>
-    </thead>
-    <tbody>
-		<?php if(!empty($_list)): if(is_array($_list)): $i = 0; $__LIST__ = $_list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><tr>
-            <td><input class="ids" type="checkbox" name="id[]" value="<?php echo ($vo["id"]); ?>" /></td>
-			<td><?php echo ($vo["name"]); ?> </td>
-			<td><?php echo ($vo["province"]); ?></td>
-			<td><?php echo ($vo["city"]); ?></td>
-			<td><?php echo ($vo["area"]); ?></td>
-			<td><span><?php echo ($vo["address"]); ?></span></td>
-            <td>
-			     <?php echo ($vo["typename"]); ?>
-            </td>
-			<td>
-                          <?php if($hidden['edit'] == null): ?><a href="<?php echo U('Sport/gymEdit?id='.$vo['id']);?>" class="get">编辑</a><?php endif; ?>
-                            </td>
-		</tr><?php endforeach; endif; else: echo "" ;endif; ?>
-		<?php else: ?>
-		<td colspan="9" class="text-center"> aOh! 暂时还没有内容! </td><?php endif; ?>
-	</tbody>
-    </table>
-	</div>
-    <div class="page">
-        <?php echo ($_page); ?>
-    </div>
+<block>
+<block name="script">
+<script type="text/javascript">
+    $(function(){
+        var group = [<?php echo ($user_groups); ?>];
+        $('.auth_groups').each(function(){
+            if( $.inArray( parseInt(this.value,10),group )>-1 ){
+                $(this).prop('checked',true);
+            }
+        });
+    });
+    // 导航高亮
+    highlight_subnav('<?php echo U('User/index');?>');
+</script>
 
         </div>
         <div class="cont-ft">
@@ -235,32 +211,5 @@
         }();
     </script>
     
-	<script src="/Public/static/thinkbox/jquery.thinkbox.js"></script>
-
-	<script type="text/javascript">
-	//搜索功能
-	$("#search").click(function(){
-		var url = $(this).attr('url');
-        var query  = $('.search-form').find('input').serialize();
-        query = query.replace(/(&|^)(\w*?\d*?\-*?_*?)*?=?((?=&)|(?=$))/g,'');
-        query = query.replace(/^&/g,'');
-        if( url.indexOf('?')>0 ){
-            url += '&' + query;
-        }else{
-            url += '?' + query;
-        }
-		window.location.href = url;
-	});
-	//回车搜索
-	$(".search-input").keyup(function(e){
-		if(e.keyCode === 13){
-			$("#search").click();
-			return false;
-		}
-	});
-    //导航高亮
-    highlight_subnav('<?php echo U('Gym/index');?>');
-	</script>
-
 </body>
 </html>

@@ -118,9 +118,10 @@
 
 
 			<td><a href="<?php echo U('AuthManager/access?group_name='.$vo['title'].'&group_id='.$vo['id']);?>" >访问授权</a>
-			<a href="<?php echo U('AuthManager/category?group_name='.$vo['title'].'&group_id='.$vo['id']);?>" >分类授权</a>
-			<a href="<?php echo U('AuthManager/user?group_name='.$vo['title'].'&group_id='.$vo['id']);?>" >成员授权</a>
-			</td>
+			<a href="<?php echo U('AuthManager/category?group_name='.$vo['title'].'&group_id='.$vo['id']);?>" >场馆授权</a>
+                        <a href="<?php echo U('AuthManager/user?group_name='.$vo['title'].'&group_id='.$vo['id']);?>" >成员授权</a>
+			
+                        </td>
 			<td><?php echo ($vo["status_text"]); ?></td>
 			<td><?php if(($vo["status"]) == "1"): ?><a href="<?php echo U('AuthManager/changeStatus?method=forbidGroup&id='.$vo['id']);?>" class="ajax-get">禁用</a>
 				<?php else: ?>

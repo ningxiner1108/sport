@@ -85,62 +85,38 @@
             
 
             
-	<!-- 标题栏 -->
-	<div class="main-title">
-		<h2>体育馆列表</h2>
-	</div>
-	<div class="cf">
-          <div class="fl">
-           <?php if($hidden['add'] == null): ?><a class="btn" href="<?php echo U('Sport/gymAdd');?>">新 增</a><?php endif; ?>
-            <?php if($hidden['delete'] == null): ?><button class="btn ajax-post confirm" url="<?php echo U('Sport/gymDelete');?>" target-form="ids">删 除</button><?php endif; ?>
-          </div>
+<div class="tab-wrap">
+    <ul class="tab-nav nav">
+        <li><a href="<?php echo U('AuthManager/access',array('group_name'=>I('group_name') ,'group_id'=> I('group_id')));?>">访问授权</a></li>
+        <li class="current"><a href="javascript:;">场馆授权</a></li>
+        <li><a href="<?php echo U('AuthManager/user',array('group_name'=>I('group_name') ,'group_id'=> I('group_id')));?>">成员授权</a></li>
+	<li class="fr">
+		    <select name="group">
+			    <?php if(is_array($auth_group)): $i = 0; $__LIST__ = $auth_group;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><option value="<?php echo U('AuthManager/category',array('group_id'=>$vo['id'],'group_name'=>$vo['title']));?>" <?php if(($vo['id']) == $this_group['id']): ?>selected<?php endif; ?> ><?php echo ($vo["title"]); ?></option><?php endforeach; endif; else: echo "" ;endif; ?>
+		    </select>
+	    </li>
+    </ul>
+    <!-- 表格列表 -->
+    <div class="tb-unit posr">
+        <form class="save-category" action="<?php echo U('AuthManager/addToCategory');?>" method="post" enctype="application/x-www-form-urlencoded">
+            <input type="hidden" name="group_id" value="<?php echo I('group_id');?>">
+            <div class="category auth-category">
+                <div class="hd cf">
+                    <div class="fold">折叠</div>
+                    <div class="order">选择</div>
+                    <div class="name">栏目名称</div>
+                </div>
+                <?php echo R('AuthManager/tree', array($group_list));?>
+            </div>
 
-        <!-- 高级搜索 -->
-		<div class="search-form fr cf">
-			<div class="sleft">
-				<input type="text" name="nickname" class="search-input" value="<?php echo I('nickname');?>" placeholder="请输入用户昵称或者ID">
-				<a class="sch-btn" href="javascript:;" id="search" url="<?php echo U('index');?>"><i class="btn-search"></i></a>
-			</div>
-		</div>
+            <div class="tb-unit-bar">
+                <button class="btn submit-btn ajax-post" type="submit" target-form="save-category">确 定</button>
+                <button class="btn btn-return" onclick="javascript:history.back(-1);return false;">返 回</button>
+            </div>
+        </form>
     </div>
-    <!-- 数据列表 -->
-    <div class="data-table table-striped">
-	<table class="">
-    <thead>
-        <tr>
-		<th class="row-selected row-selected"><input class="check-all" type="checkbox"/></th>
-		<th class="">名称</th>
-		<th class="">省份</th>
-		<th class="">市区</th>
-		<th class="">区县</th>
-		<th class="">具体地址</th>
-		<th class="">类型</th>
-		<th class="">操作</th>
-		</tr>
-    </thead>
-    <tbody>
-		<?php if(!empty($_list)): if(is_array($_list)): $i = 0; $__LIST__ = $_list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><tr>
-            <td><input class="ids" type="checkbox" name="id[]" value="<?php echo ($vo["id"]); ?>" /></td>
-			<td><?php echo ($vo["name"]); ?> </td>
-			<td><?php echo ($vo["province"]); ?></td>
-			<td><?php echo ($vo["city"]); ?></td>
-			<td><?php echo ($vo["area"]); ?></td>
-			<td><span><?php echo ($vo["address"]); ?></span></td>
-            <td>
-			     <?php echo ($vo["typename"]); ?>
-            </td>
-			<td>
-                          <?php if($hidden['edit'] == null): ?><a href="<?php echo U('Sport/gymEdit?id='.$vo['id']);?>" class="get">编辑</a><?php endif; ?>
-                            </td>
-		</tr><?php endforeach; endif; else: echo "" ;endif; ?>
-		<?php else: ?>
-		<td colspan="9" class="text-center"> aOh! 暂时还没有内容! </td><?php endif; ?>
-	</tbody>
-    </table>
-	</div>
-    <div class="page">
-        <?php echo ($_page); ?>
-    </div>
+</div>
+<!-- /表格列表 -->
 
         </div>
         <div class="cont-ft">
@@ -235,32 +211,36 @@
         }();
     </script>
     
-	<script src="/Public/static/thinkbox/jquery.thinkbox.js"></script>
+<script type="text/javascript">
+    +function($){
+        /* 分类展开收起 */
+        $(".category dd").prev().find(".fold i").addClass("icon-unfold")
+            .click(function(){
+                var self = $(this);
+                if(self.hasClass("icon-unfold")){
+                    self.closest("dt").next().slideUp("fast", function(){
+                        self.removeClass("icon-unfold").addClass("icon-fold");
+                    });
+                } else {
+                    self.closest("dt").next().slideDown("fast", function(){
+                        self.removeClass("icon-fold").addClass("icon-unfold");
+                    });
+                }
+            });
 
-	<script type="text/javascript">
-	//搜索功能
-	$("#search").click(function(){
-		var url = $(this).attr('url');
-        var query  = $('.search-form').find('input').serialize();
-        query = query.replace(/(&|^)(\w*?\d*?\-*?_*?)*?=?((?=&)|(?=$))/g,'');
-        query = query.replace(/^&/g,'');
-        if( url.indexOf('?')>0 ){
-            url += '&' + query;
-        }else{
-            url += '?' + query;
-        }
-		window.location.href = url;
-	});
-	//回车搜索
-	$(".search-input").keyup(function(e){
-		if(e.keyCode === 13){
-			$("#search").click();
-			return false;
-		}
-	});
+        var auth_groups = [<?php echo ($authed_group); ?>];
+        $('.cate_id').each(function(){
+            if( $.inArray( parseInt(this.value,10),auth_groups )>-1 ){
+                $(this).prop('checked',true);
+            }
+        });
+	    $('select[name=group]').change(function(){
+		    location.href = this.value;
+	    });
+    }(jQuery);
     //导航高亮
-    highlight_subnav('<?php echo U('Gym/index');?>');
-	</script>
+    highlight_subnav('<?php echo U('AuthManager/index');?>');
+</script>
 
 </body>
 </html>

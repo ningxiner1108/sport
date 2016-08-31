@@ -85,85 +85,160 @@
             
 
             
-
   <!--<script src="jquery.js"></script>-->
-     <script>
+  <script src="/Public/Admin/js/jquery.cxselect.min.js"></script>
+    <script>
       var URL = "/index.php/Admin/Sport";
       var APP = "/index.php";
       var ROOT = "";
   </script>
-  <input type='hidden' value='<?php echo ($spaceType["gid"]); ?>' id='gid'>
-  <input type='hidden' value='<?php echo ($spaceType["shid"]); ?>' id='shid'>
-
-  <script src="/Public/Admin/js/selectTwoInit.js"></script>
+  <script type="text/javascript" src="/Public/static/uploadify/jquery.uploadify.min.js"></script>
+  <script src="/Public/Admin/js/threeSelect.js"></script>
     <div class="main-title">
-        <h2>编辑场地类型</h2>
+        <h2>新增散票</h2>
     </div>
-    <form action="<?php echo U(Sport/spaceTypeEdit);?>" method="post" class="form-horizontal">
-              <div class="form-item">
+    <form action="<?php echo U(Sport/guestTicketAdd);?>" method="post" class="form-horizontal">
+         <div class="form-item">
             <label class="item-label">场馆选择<span class="check-tips"></span></label>
             <div class="controls">
-                <select class="gym" name="gid" id='gym'>
+                <select class="gym" name="gid" >
+                    <option value="0">请选择</option>
                 </select>  
             </div>
         </div>
-        <input type='hidden' value='<?php echo ($spaceType["id"]); ?>' name='id'>
-      <div class="form-item">
-            <label class="item-label">类型名<span class="check-tips"></span></label>
+         <div class="form-item">
+            <label class="item-label">散票类型<span class="check-tips"></span></label>
             <div class="controls">
-                <input type="text" class="text input-large" name="name" value="<?php echo ($spaceType["name"]); ?>">
+                 <select name="gttype">
+                         <option value='0'>请选择</option>
+                    <option value="普通票" >普通票</option>
+                    <option value="成人票" >成人票</option>
+                    <option value="儿童票" >儿童票</option>
+                    <option value="老年票" >老年票</option>
+                    <option value="学生票" >学生票</option>
+                </select>
             </div>
         </div>
         <div class="form-item">
-            <label class="item-label">预订配置选择<span class="check-tips"></span></label>
+            <label class="item-label">时间类型<span class="check-tips"></span></label>
             <div class="controls">
-                <select name="orderconfigid">
-                <?php if(is_array($orderConfig)): $i = 0; $__LIST__ = $orderConfig;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><option value="<?php echo ($vo["id"]); ?>" <?php if($vo["id"] == $spaceType['orderconfigid']): ?>selected<?php endif; ?> >最低时长<?php echo ($vo["minhour"]); ?>-最多时长<?php echo ($vo["maxhour"]); ?>--最多场地<?php echo ($vo["maxplace"]); ?></option><?php endforeach; endif; else: echo "" ;endif; ?>
-            </select>
+                 <select name="timetype" id="timetype">
+                    <option value="0" >不限</option>
+                    <option value="1" >指定星期</option>
+                    <option value="2" >日期范围</option>
+                    <option value="3" >具体日期</option>
+                </select>
             </div>
         </div>
-                  <div class="form-item">
-            <label class="item-label">价格配置选择<span class="check-tips"></span></label>
+     <div id="week" style="display:none">
+       <div class="form-item">
+            <label class="item-label">开始时间<span class="check-tips"></span></label>
             <div class="controls">
-             <select name="priceconfigid" id="priceconfigid">
-                <?php if(is_array($priceConfig)): $i = 0; $__LIST__ = $priceConfig;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><option value="<?php echo ($vo["id"]); ?>" <?php if($vo["id"] == $spaceType['priceconfigid']): ?>selected<?php endif; ?>><?php echo ($vo["title"]); ?></option><?php endforeach; endif; else: echo "" ;endif; ?>  
-            </select>
-      <div class="data-table table-striped"  id="priceTable">
-          <table class="" style="width:25%">
-       <thead>
-            <tr>
-                    <th class="">起止时间</th>
-                    <th class="">价格</th>
-            </tr>
-         </thead>
-    <tbody id="detailList">
-    </tbody>
-    </table>
-              </div>    
+                <select name="date_s_1">
+                    <option value="1" >星期一</option>
+                    <option value="2" >星期二</option>
+                    <option value="3" >星期三</option>
+                    <option value="4" >星期四</option>
+                    <option value="5" >星期五</option>
+                    <option value="6" >星期六</option>
+                    <option value="7" >星期天</option>
+                 </select>
             </div>
         </div>
+        
+          <div class="form-item">
+            <label class="item-label">结束时间<span class="check-tips"></span></label>
+            <div class="controls">
+                <select name="date_e_1">
+                    <option value="1" >星期一</option>
+                    <option value="2" >星期二</option>
+                    <option value="3" >星期三</option>
+                    <option value="4" >星期四</option>
+                    <option value="5" >星期五</option>
+                    <option value="6" >星期六</option>
+                    <option value="7" >星期天</option>
+                 </select>
+            </div>
+        </div>
+    </div>
+
+    <div id="date" style="display:none">
+       <div class="form-item">
+            <label class="item-label">开始时间<span class="check-tips"></span></label>
+            <div class="controls">
+                <select name="date_s_2">
+                    <?php if(is_array($data)): $i = 0; $__LIST__ = $data;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><option value="<?php echo ($vo); ?>" ><?php echo ($vo); ?>号</option><?php endforeach; endif; else: echo "" ;endif; ?>
+                 </select>
+            </div>
+        </div>
+        
+       <div class="form-item">
+            <label class="item-label">结束时间<span class="check-tips"></span></label>
+            <div class="controls">
+                <select name="date_e_2">
+                    <?php if(is_array($data)): $i = 0; $__LIST__ = $data;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><option value="<?php echo ($vo); ?>" ><?php echo ($vo); ?>号</option><?php endforeach; endif; else: echo "" ;endif; ?>
+                 </select>
+            </div>
+        </div>
+    </div>
+
+
+<div style="display:none" id="date_define">
+    <div class="form-item">
+            <label class="item-label">开始时间</label>
+            <div class="controls">
+               <input type="text" name="date_s_3" class="text input-large time" value="" placeholder="请选择时间" />
+            </div>
+    </div>
+
+    <div class="form-item">
+            <label class="item-label">结束时间</label>
+            <div class="controls">
+               <input type="text" name="date_e_3" class="text input-large time" value="" placeholder="请选择时间" />
+            </div>
+    </div>
+</div>
+        <div class="form-item" id="timeset">
+            <label class="item-label">时间段价格设置<span class="check-tips"></span></label>
+            <div class="controls">
+                <select name="timezone_s">
+                   <?php if(is_array($showtime)): $i = 0; $__LIST__ = $showtime;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><option value="<?php echo ($vo["key"]); ?>" ><?php echo ($vo["value"]); ?></option><?php endforeach; endif; else: echo "" ;endif; ?>
+            </select>—
+            <select name="timezone_e">
+                     <?php if(is_array($showtime)): $i = 0; $__LIST__ = $showtime;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><option value="<?php echo ($vo["key"]); ?>" ><?php echo ($vo["value"]); ?></option><?php endforeach; endif; else: echo "" ;endif; ?>
+            </select>&nbsp;&nbsp;
+                 <input type="text" class="text input-small" name="price" value="" placeholder="请输入价格">元
+                 <input type="text" name="unit" class="text input-small" value=""  placeholder="请输入单位"/>例如：元/人/次
+            </div>
+        </div>
+          
         <div class="form-item">
-            <label class="item-label">排序<span class="check-tips"></span></label>
+            <label class="item-label">排序 </label>
             <div class="controls">
-                <input type="text" class="text input-large" name="sort" value="<?php echo ($spaceType["sort"]); ?>">
-            </div>
-        </div>
+            <label class="input-large">
+             <input type="text" name="sort" class="text input-large" value=""  />
+              </label>				
+        </div>   
+            
+            
         <div class="form-item">
-            <label class="item-label">类型描述 </label>
+            <label class="item-label">购票须知 </label>
             <div class="controls">
             <label class="textarea input-large">
-                    <textarea name="description"><?php echo ($spaceType["description"]); ?></textarea>
-            </label>                
+                    <textarea name="note"></textarea>
+            </label>				
             </div>
-        </div>
+	</div>    
+            
+            
          <div class="form-item">
             <label class="item-label">备注 </label>
             <div class="controls">
             <label class="textarea input-large">
-                    <textarea name="mark"><?php echo ($spaceType["mark"]); ?></textarea>
+                    <textarea name="mark"></textarea>
             </label>				
             </div>
-		</div>
+	</div>
         <div class="form-item">
             <button class="btn submit-btn ajax-post" id="submit" type="submit" target-form="form-horizontal">确 定</button>
             <button class="btn btn-return" onclick="javascript:history.back(-1);return false;">返 回</button>
@@ -263,12 +338,48 @@
         }();
     </script>
     
-     <script src="/Public/Admin/js/priceInit.js"></script>
-     <script src="/Public/Admin/js/priceConfig.js"></script>
-     <script type="text/javascript">
-        //导航高亮
-        highlight_subnav('<?php echo U('User/index');?>');
-    </script>
+<link href="/Public/static/datetimepicker/css/datetimepicker.css" rel="stylesheet" type="text/css">
+<?php if(C('COLOR_STYLE')=='blue_color') echo '<link href="/Public/static/datetimepicker/css/datetimepicker_blue.css" rel="stylesheet" type="text/css">'; ?>
+<link href="/Public/static/datetimepicker/css/dropdown.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="/Public/static/datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+<script type="text/javascript" src="/Public/static/datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>
+<script type="text/javascript">
+  //导航高亮
+   highlight_subnav('<?php echo U('User/index');?>');
+$(function(){
+    $('.time').datetimepicker({
+        format: 'yyyy-mm-dd',
+        language:"zh-CN",
+        minView:2,
+        autoclose:true
+    });
+    showTab();
+
+});
+ $('#timetype').bind('change', function(){ 
+    var val = $(this).val(); 
+    console.log(val);
+    switch(val){ 
+      case '0': $("#week").hide();$('#date').hide();$("#date_define").hide(); break; 
+      case '1': $('#week').show(); $('#date').hide();$("#date_define").hide(); break; 
+      case '2': $('#date').show(); $('#week').hide();$("#date_define").hide(); break;
+      case '3': $("#date_define").show();$('#date').hide(); $('#week').hide(); break;  
+      } 
+    });
+    
+   $('#timezone_e').bind('change', function(){ 
+    var val = $(this).val(); 
+    console.log(val);
+    switch(val){ 
+      case '0': $("#week").hide();$('#date').hide();$("#date_define").hide(); break; 
+      case '1': $('#week').show(); $('#date').hide();$("#date_define").hide(); break; 
+      case '2': $('#date').show(); $('#week').hide();$("#date_define").hide(); break;
+      case '3': $("#date_define").show();$('#date').hide(); $('#week').hide(); break;  
+      } 
+    });  
+    
+    
+</script>
 
 </body>
 </html>

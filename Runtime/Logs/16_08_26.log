@@ -40,3 +40,10 @@ ERR: 非法操作:index
 [ 2016-08-26T11:30:16+08:00 ] 127.0.0.1 /index.php/Admin/Sport/
 ERR: 非法操作:index
 
+[ 2016-08-26T15:41:21+08:00 ] 127.0.0.1 /index.php/Admin/Sport/changeStatusGym/method/deleteGym.html
+ERR: 非法操作:changestatusgym
+
+[ 2016-08-26T16:57:40+08:00 ] 127.0.0.1 /index.php/Admin/think/lists/model/document.html
+ERR: 1054:Unknown column 'status_text' in 'field list'
+ [ SQL语句 ] : SELECT `id`,`category_id`,`title`,`type`,`level`,`update_time`,`status_text`,`view` FROM `sp_document` ORDER BY id DESC LIMIT 0,10  
+

@@ -3,10 +3,20 @@
     <dt class="cf">
     <div class="fold"><i></i></div>
     <label>
-        <div class="order"> <input class="cate_id" type="checkbox" name="cid[]" value="{$list.id}"></div>
-        <div class="name">
+    <div class="order"> 
+       <if condition="$list.gid eq null">
+          <input class="cate_id" type="checkbox" name="gymid[]" value="{$list.id}">
+       <elseif condition="$list.shid eq null"/>
+           <input class="cate_id" type="checkbox" name="shid[]" value="{$list.id}">
+       <elseif condition="$list.spaceid eq null"/>
+           <input class="cate_id" type="checkbox" name="spaceid[]" value="{$list.id}">
+       <else/>
+           <input class="cate_id" type="checkbox" name="placeid[]" value="{$list.id}">
+       </if>
+       </div>
+    <div class="name">
             <span class="tab-sign"></span>
-            {$list.title}
+            {$list.name}
             <span class="help-inline msg"></span>
         </div>
     </label>

@@ -310,6 +310,21 @@ class AuthGroupModel extends Model {
         return $this->checkId('Category',$cid, '以下分类id不存在:');
     }
 
-
+//    当前登录用户id，获取某个用户组权限
+    public function getSportRule(){
+        $user = session('user_auth');
+        $uid = $user['uid'];
+        $arr = array();
+        if($uid==1){
+            return $arr;
+        }
+        $access = M(self::AUTH_GROUP_ACCESS)->where( array( 'uid'=>$uid) )->find();
+        $gid = $access['group_id'];
+        $rule = $this->where('id='.$gid)->field('sport_rule')->find();
+        $arr = json_decode($rule['sport_rule'],true);
+        return $arr;
+    }
+    
+    
 }
 

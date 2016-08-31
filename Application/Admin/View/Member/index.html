@@ -1,20 +1,14 @@
 
 <extend name="Public/base" />
-
 <block name="body">
 	<!-- 标题栏 -->
 	<div class="main-title">
-		<h2>场地类型列表</h2>
+            <h2>会员列表</h2>
 	</div>
 	<div class="cf">
-		<div class="fl">
-                      <if condition="$hidden['add'] eq null"> 
-            <a class="btn" href="{:U('Sport/spaceTypeAdd')}">新 增</a>
-                      </if>
-                      <if condition="$hidden['delete'] eq null"> 
-            <button class="btn ajax-post confirm" url="{:U('Sport/spaceTypeDelete')}" target-form="ids">删 除</button>
-                      </if>
-                </div>
+	<div class="fl">
+           <button class="btn ajax-post confirm" url="{:U('Sport/placeDelete')}" target-form="ids">删 除</button>
+        </div>
 
         <!-- 高级搜索 -->
 		<div class="search-form fr cf">
@@ -30,9 +24,11 @@
     <thead>
         <tr>
 		<th class="row-selected row-selected"><input class="check-all" type="checkbox"/></th>
-		<th class="">场地类名</th>
-		<th class="">体育馆名</th>
-                <th class="">场馆名</th>
+		<th class="">会员ID</th>
+                <th class="">用户昵称</th>
+                <th class="">手机号</th>
+		<th class="">卡号</th>
+		<th class="">账户余额(￥)</th>
 		<th class="">操作</th>
 		</tr>
     </thead>
@@ -41,13 +37,16 @@
 		<volist name="_list" id="vo">
 		<tr>
             <td><input class="ids" type="checkbox" name="id[]" value="{$vo.id}" /></td>
-			<td>{$vo.name} </td>
-                        <td>{$vo.gymname.name}</td>
-			<td>{$vo.hallname.name}</td>
+			<td>{$vo.id}</td>
+                        <td>{$vo.nickname} </td>
+			<td>{$vo.phone}</td>
+                        <td>{$vo.number}</td>
+                        <td>{$vo.balance}</td>
 			<td>
-                        <if condition="$hidden['edit'] eq null"> 
-			    <a href="{:U('Sport/spaceTypeEdit?id='.$vo['id'])}" class="get">编辑</a>
-                       </if> </td>
+                          <if condition="$hidden['edit'] eq null"> 
+			   <a href="{:U('Member/userinfoEdit?id='.$vo['id'])}" class="get">详情</a>
+                          </if>
+            </td>
 		</tr>
 		</volist>
 		<else/>

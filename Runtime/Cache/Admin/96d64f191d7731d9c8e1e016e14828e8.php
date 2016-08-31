@@ -86,7 +86,6 @@
 
             
   <!--<script src="jquery.js"></script>-->
-  <script src="/Public/Admin/js/jquery.cxselect.min.js"></script>
   <script type="text/javascript" src="/Public/static/uploadify/jquery.uploadify.min.js"></script>
 
     <div class="main-title">

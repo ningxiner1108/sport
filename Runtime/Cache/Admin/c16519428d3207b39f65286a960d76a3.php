@@ -85,62 +85,130 @@
             
 
             
-	<!-- 标题栏 -->
-	<div class="main-title">
-		<h2>体育馆列表</h2>
-	</div>
-	<div class="cf">
-          <div class="fl">
-           <?php if($hidden['add'] == null): ?><a class="btn" href="<?php echo U('Sport/gymAdd');?>">新 增</a><?php endif; ?>
-            <?php if($hidden['delete'] == null): ?><button class="btn ajax-post confirm" url="<?php echo U('Sport/gymDelete');?>" target-form="ids">删 除</button><?php endif; ?>
-          </div>
-
-        <!-- 高级搜索 -->
-		<div class="search-form fr cf">
-			<div class="sleft">
-				<input type="text" name="nickname" class="search-input" value="<?php echo I('nickname');?>" placeholder="请输入用户昵称或者ID">
-				<a class="sch-btn" href="javascript:;" id="search" url="<?php echo U('index');?>"><i class="btn-search"></i></a>
-			</div>
-		</div>
+  <!--<script src="jquery.js"></script>-->
+  <script type="text/javascript" src="/Public/static/uploadify/jquery.uploadify.min.js"></script>
+  <script src="/Public/Admin/js/threeSelect.js"></script>
+    <div class="main-title">
+        <h2>编辑订单</h2>
     </div>
-    <!-- 数据列表 -->
-    <div class="data-table table-striped">
-	<table class="">
-    <thead>
-        <tr>
-		<th class="row-selected row-selected"><input class="check-all" type="checkbox"/></th>
-		<th class="">名称</th>
-		<th class="">省份</th>
-		<th class="">市区</th>
-		<th class="">区县</th>
-		<th class="">具体地址</th>
-		<th class="">类型</th>
-		<th class="">操作</th>
-		</tr>
-    </thead>
-    <tbody>
-		<?php if(!empty($_list)): if(is_array($_list)): $i = 0; $__LIST__ = $_list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><tr>
-            <td><input class="ids" type="checkbox" name="id[]" value="<?php echo ($vo["id"]); ?>" /></td>
-			<td><?php echo ($vo["name"]); ?> </td>
-			<td><?php echo ($vo["province"]); ?></td>
-			<td><?php echo ($vo["city"]); ?></td>
-			<td><?php echo ($vo["area"]); ?></td>
-			<td><span><?php echo ($vo["address"]); ?></span></td>
-            <td>
-			     <?php echo ($vo["typename"]); ?>
-            </td>
-			<td>
-                          <?php if($hidden['edit'] == null): ?><a href="<?php echo U('Sport/gymEdit?id='.$vo['id']);?>" class="get">编辑</a><?php endif; ?>
-                            </td>
-		</tr><?php endforeach; endif; else: echo "" ;endif; ?>
-		<?php else: ?>
-		<td colspan="9" class="text-center"> aOh! 暂时还没有内容! </td><?php endif; ?>
-	</tbody>
-    </table>
-	</div>
-    <div class="page">
-        <?php echo ($_page); ?>
-    </div>
+    <form action="<?php echo U(Sport/guestTicketEdit);?>" method="post" class="form-horizontal">
+       <div class="form-item">
+            <label class="item-label">订单编号 </label>
+            <div class="controls">
+            <label class="input-large">
+             <input type="text" name="number" class="text input-large" value="<?php echo ($order["number"]); ?>" readonly />
+            </label>				
+      </div>
+        
+       <div class="form-item">
+            <label class="item-label">标题 </label>
+            <div class="controls">
+            <label class="input-large">
+             <input type="text" name="title" class="text input-large" value="<?php echo ($order["title"]); ?>"  />
+            </label>				
+      </div>
+      
+       <div class="form-item">
+            <label class="item-label">金额 </label>
+            <div class="controls">
+            <label class="input-large">
+             <input type="text" name="amount" class="text input-large" value="<?php echo ($order["amount"]); ?>"  />
+            </label>				
+      </div>
+            
+       <div class="form-item">
+            <label class="item-label">预订场地信息 </label>
+            <div class="controls">
+            <label class="input-large">
+             <input type="text" name="spaceinfo" class="text input-large" value="<?php echo ($order["spaceinfo"]); ?>"  />
+            </label>				
+      </div>      
+        
+      <div class="form-item">
+            <label class="item-label">日期</label>
+            <div class="controls">
+            <label class="input-large">
+             <input type="text" name="amount" class="text input-large" value="<?php echo ($order["yearinfo"]); ?>年<?php echo ($order["dateinfo"]); ?>"  />
+            </label>				
+      </div>   
+        
+         <div class="form-item">
+            <label class="item-label">时间 </label>
+            <div class="controls">
+            <label class="input-large">
+             <input type="text" name="timeinfo" class="text input-large" value="<?php echo ($order["timeinfo"]); ?>"  />
+            </label>				
+      </div>
+        
+         <div class="form-item">
+            <label class="item-label">预订片场 </label>
+            <div class="controls">
+            <label class="input-large">
+             <input type="text" name="placeinfo" class="text input-large" value="<?php echo ($order["placeinfo"]); ?>"  />
+            </label>				
+      </div>     
+            
+     <div class="form-item">
+            <label class="item-label">预订时长 </label>
+            <div class="controls">
+            <label class="input-large">
+             <input type="text" name="hourinfo" class="text input-large" value="<?php echo ($order["hourinfo"]); ?>"  />
+            </label>				
+      </div>       
+      <div class="form-item">
+            <label class="item-label">支付状态<span class="check-tips"></span></label>
+            <div class="controls">
+                 <select name='ispay'>
+                     <option value="0" <?php if(0 == $order['ispay']): ?>selected<?php endif; ?>>未支付</option>
+                     <option value="1" <?php if(1 == $order['ispay']): ?>selected<?php endif; ?>>已支付</option>
+                     <option value="2" <?php if(2 == $order['ispay']): ?>selected<?php endif; ?>>过期未支付</option>
+                     <option value="3" <?php if(3 == $order['ispay']): ?>selected<?php endif; ?>>退订</option>
+                     <option value="4" <?php if(4 == $order['ispay']): ?>selected<?php endif; ?>>已完成</option>
+                     <option value="5" <?php if(5 == $order['ispay']): ?>selected<?php endif; ?>>改签</option>
+                     <option value="6" <?php if(6 == $order['ispay']): ?>selected<?php endif; ?>>过期未入</option>
+                </select>
+            </div>
+        </div>    
+       <div class="form-item">
+            <label class="item-label">是否改签<span class="check-tips"></span></label>
+            <div class="controls">
+                 <select name='isendorse'>
+                     <option value="0"<?php if(0 == $order['isendorse']): ?>selected<?php endif; ?>>否</option>
+                     <option value="1" <?php if(1 == $order['isendorse']): ?>selected<?php endif; ?>>是</option>
+                </select>
+            </div>
+        </div> 
+            
+          <div class="form-item">
+            <label class="item-label">支付时间 </label>
+            <div class="controls">
+            <label class="input-large">
+             <input type="text" name="paytime" class="text input-large" value="<?php echo ($paytime); ?>"  />
+            </label>				
+      </div>       
+            
+      <div class="form-item">
+            <label class="item-label">是否删除<span class="check-tips"></span></label>
+            <div class="controls">
+                 <select name='isdel'>
+                     <option value="0"<?php if(0 == $order['isdel']): ?>selected<?php endif; ?>>否</option>
+                     <option value="1" <?php if(1 == $order['isdel']): ?>selected<?php endif; ?>>是</option>
+                </select>
+            </div>
+        </div>   
+        <div class="form-item">
+            <label class="item-label">预订场馆路径<span class="check-tips"></span></label>
+            <div class="controls">
+             <label class="input-large">
+             <input type="text" name="path" class="text input-large" value="<?php echo ($order["path"]); ?>"  />
+            </label>	
+            </div>
+        </div> 
+      <div class="form-item">
+            <button class="btn submit-btn ajax-post" id="submit" type="submit" target-form="form-horizontal">确 定</button>
+            <button class="btn btn-return" onclick="javascript:history.back(-1);return false;">返 回</button>
+        </div>
+    </form>
 
         </div>
         <div class="cont-ft">
@@ -235,32 +303,48 @@
         }();
     </script>
     
-	<script src="/Public/static/thinkbox/jquery.thinkbox.js"></script>
+<link href="/Public/static/datetimepicker/css/datetimepicker.css" rel="stylesheet" type="text/css">
+<?php if(C('COLOR_STYLE')=='blue_color') echo '<link href="/Public/static/datetimepicker/css/datetimepicker_blue.css" rel="stylesheet" type="text/css">'; ?>
+<link href="/Public/static/datetimepicker/css/dropdown.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="/Public/static/datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+<script type="text/javascript" src="/Public/static/datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>
+<script type="text/javascript">
+  //导航高亮
+   highlight_subnav('<?php echo U('User/index');?>');
+$(function(){
+    $('.time').datetimepicker({
+        format: 'yyyy-mm-dd',
+        language:"zh-CN",
+        minView:2,
+        autoclose:true
+    });
+    showTab();
 
-	<script type="text/javascript">
-	//搜索功能
-	$("#search").click(function(){
-		var url = $(this).attr('url');
-        var query  = $('.search-form').find('input').serialize();
-        query = query.replace(/(&|^)(\w*?\d*?\-*?_*?)*?=?((?=&)|(?=$))/g,'');
-        query = query.replace(/^&/g,'');
-        if( url.indexOf('?')>0 ){
-            url += '&' + query;
-        }else{
-            url += '?' + query;
-        }
-		window.location.href = url;
-	});
-	//回车搜索
-	$(".search-input").keyup(function(e){
-		if(e.keyCode === 13){
-			$("#search").click();
-			return false;
-		}
-	});
-    //导航高亮
-    highlight_subnav('<?php echo U('Gym/index');?>');
-	</script>
+});
+ $('#timetype').bind('change', function(){ 
+    var val = $(this).val(); 
+    console.log(val);
+    switch(val){ 
+      case '0': $("#week").hide();$('#date').hide();$("#date_define").hide(); break; 
+      case '1': $('#week').show(); $('#date').hide();$("#date_define").hide(); break; 
+      case '2': $('#date').show(); $('#week').hide();$("#date_define").hide(); break;
+      case '3': $("#date_define").show();$('#date').hide(); $('#week').hide(); break;  
+      } 
+    });
+    
+   $('#timezone_e').bind('change', function(){ 
+    var val = $(this).val(); 
+    console.log(val);
+    switch(val){ 
+      case '0': $("#week").hide();$('#date').hide();$("#date_define").hide(); break; 
+      case '1': $('#week').show(); $('#date').hide();$("#date_define").hide(); break; 
+      case '2': $('#date').show(); $('#week').hide();$("#date_define").hide(); break;
+      case '3': $("#date_define").show();$('#date').hide(); $('#week').hide(); break;  
+      } 
+    });  
+    
+    
+</script>
 
 </body>
 </html>
